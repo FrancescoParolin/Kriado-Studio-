@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "homeTitle": "Kriado Studio: Friseur und Barbershop in Cala Ratjada, Mallorca",
+    "homeDescription": "Friseur und Barbershop für Damen und Herren in Cala Ratjada, Mallorca. Schnitt, Farbe, Strähnchen und Bart. Termin online oder per WhatsApp."
+  },
+  "nav": {
+    "home": "Start",
+    "gallery": "Galerie",
+    "about": "Über uns",
+    "locations": "Standorte",
+    "contact": "Kontakt",
+    "menu": "Menü",
+    "close": "Schließen",
+    "main": "Hauptnavigation",
+    "homeLabel": "Kriado Studio, zur Startseite",
+    "language": "Sprache",
+    "skip": "Zum Inhalt springen"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "cta": {
+    "book": "Termin buchen",
+    "whatsapp": "Per WhatsApp schreiben",
+    "call": "Anrufen",
+    "directions": "Route planen",
+    "fullGallery": "Ganze Galerie ansehen",
+    "moreInstagram": "Mehr auf Instagram",
+    "askWhatsapp": "Per WhatsApp fragen",
+    "newTab": "(öffnet in einem neuen Tab)",
+    "openMaps": "In Google Maps öffnen"
+  },
+  "whatsapp": {
+    "booking": "Hallo, ich möchte gern einen Termin bei Kriado Studio buchen. Wann habt ihr Zeit?",
+    "product": "Hallo, ich habe auf eurer Website ein Produkt gesehen und hätte eine Frage dazu.",
+    "private": "Hallo, ich hätte gern Infos zu Kriado Private."
+  },
+  "recorrido": {
+    "label": "Ein Gang durch das Studio"
+  },
+  "home": {
+    "hero": {
+      "title": "Wo Stil beginnt.",
+      "lede": "Friseur und Barbershop für Damen und Herren in der Carrer Leonor Servera 7, Cala Ratjada. Nur mit Termin.",
+      "rating": "<num>{rating}</num> von 5 bei Google, {count} Bewertungen"
+    },
+    "intro": {
+      "text": "Kriado Studio ist Friseur und Barbershop für Damen und Herren in Cala Ratjada. Schnitt, Farbe, Strähnchen, Styling und Bart, mit Termin: online bei Yeasy oder per WhatsApp.",
+      "pending": "[DA_CLIENTE: Angaben zu Carlos und seit wann es den Laden gibt]",
+      "statement": "Erst zuhören. Dann schneiden.",
+      "facts": {
+        "ratingLabel": "von 5 bei Google, {count} Bewertungen",
+        "hoursValue": "{days}",
+        "hoursLabel": "{time} Uhr, mit Termin",
+        "privateValue": "Auch bei dir",
+        "privateLabel": "Kriado Private, exklusiver Service in Villen und Hotels auf der ganzen Insel"
+      },
+      "statementA": "Erst zuhören.",
+      "statementB": "Dann schneiden.",
+      "ratingFact": "{count} Bewertungen auf Google",
+      "hoursFact": "{days}, {time} Uhr",
+      "privateFact": "Exklusiver Service in Villen und Hotels auf der ganzen Insel",
+      "seeMenu": "Zur Karte"
+    },
+    "services": {
+      "title": "Schnitt, Farbe und Bart",
+      "pending": "[DA_CLIENTE: Friseurleistungen und Beschreibungen bestätigen. Barbershop stammt aus der Yeasy-Preisliste]",
+      "groups": {
+        "peluqueria": "Friseur",
+        "barberia": "Barbershop"
+      },
+      "minutes": "{minutes} Min.",
+      "variable": "Preis variabel",
+      "groupIntro": {
+        "barberia": "Die Kriado-Karte. Buchbar bei Yeasy, mit genauem Tag und Uhrzeit.",
+        "peluqueria": "Für Damen und Herren. Buchung per WhatsApp: Vor jeder Farbe oder Typveränderung schauen wir uns dein Haar genau an."
+      },
+      "brands": "Im Salon findest du {brands}.",
+      "onRequest": "Auf Anfrage",
+      "popular": "Sehr beliebt.",
+      "saving": "Du sparst {amount}.",
+      "bookOnYeasy": "{service} bei Yeasy buchen",
+      "groupPriceNote": "Preise auf Anfrage.",
+      "popularTag": "Beliebt",
+      "tabsLabel": "Art der Leistung",
+      "count": "{count} Leistungen",
+      "privateMeta": "Ganz Mallorca · Buchung {from} bis {to} Tage im Voraus",
+      "privateAsk": "Per WhatsApp fragen"
+    },
+    "products": {
+      "title": "Im Studio erhältlich",
+      "text": "Alles, was du hier siehst, gibt es bei uns im Laden. Du suchst etwas Bestimmtes? Frag einfach.",
+      "all": "Alle",
+      "filter": "Produkte filtern"
+    },
+    "gallery": {
+      "title": "Aktuelle Arbeiten",
+      "titleStudio": "Das Studio",
+      "titleMixed": "Arbeiten und Salon"
+    },
+    "reviews": {
+      "title": "Was unsere Kundschaft sagt",
+      "source": "Google-Bewertung",
+      "readAll": "Alle {count} Bewertungen bei Google lesen",
+      "outOf": "von 5 bei Google",
+      "breakdown": "{count} Bewertungen, davon {five} mit fünf Sternen",
+      "inviteTitle": "Schon bei uns gewesen?",
+      "inviteText": "Erzähl es auf Google: Deine Bewertung hilft allen, die in Cala Ratjada einen Friseur suchen.",
+      "inviteButton": "Bewertung auf Google schreiben",
+      "starsLabel": "{value} von 5 Sternen auf Google",
+      "reviewStars": "{stars} von 5 Sternen"
+    },
+    "location": {
+      "title": "So findest du uns",
+      "seeLocation": "Zum Studio"
+    },
+    "carlos": {
+      "title": "Das ist Kriado",
+      "p1": "Kriado Studio entstand 2026 auf Mallorca als eigene Marke: Friseur und Barbershop für Damen und Herren, aufgebaut auf technischer Exzellenz, Eleganz und einem zeitgemäßen Blick auf Pflege.",
+      "p2": "Hinter der Marke steht Carlos Kriado, seit 2020 im Barbershop und seit 2022 als Profi. Heute ist Kriado ein Team: Zum Salon gehört auch Pau, zuständig für Styling, und mit Kriado Private kommt das Kriado-Erlebnis diskret in Villen und Hotels auf der ganzen Insel.",
+      "photoAlt": "Der Waschbereich von Kriado Studio, mit dem Kérastase-Schriftzug an der Wand und Produkten in den Regalen",
+      "pending": "[DA_CLIENTE: Foto von Carlos bei der Arbeit]",
+      "more": "Mehr über Kriado",
+      "statement": "Technik, Eleganz und ein moderner Blick.",
+      "workAlt": "Pau formt im Kriado Studio die Augenbrauen eines Kunden"
+    },
+    "ribbon": [
+      "Friseur",
+      "Barbershop",
+      "Cala Ratjada",
+      "Mit Termin"
+    ],
+    "openings": {
+      "title": "Neue Standorte",
+      "text": "Drei neue Standorte auf Mallorca. Die Namen verraten wir bald.",
+      "soon": "Demnächst",
+      "secret": "Neuer Standort, Name noch geheim"
+    }
+  },
+  "location": {
+    "hours": "Öffnungszeiten",
+    "closed": "Geschlossen",
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "today": "Heute",
+    "mapCredit": "Karte",
+    "mapLabel": "Standort von Kriado Studio in Google Maps öffnen",
+    "practical": {
+      "title": "Bus, Parken und Taxi",
+      "bus": "Bus",
+      "busText": "Haltestelle Magallanes, etwa {m} m entfernt",
+      "parking": "Parken",
+      "parkingFree": "Kostenlos, an der Plaça de Son Moll, etwa {m} m entfernt",
+      "parkingText": "An der Plaça de Son Moll, etwa {m} m entfernt",
+      "taxi": "Taxi",
+      "taxiText": "Taxistand etwa {m} m entfernt",
+      "parkingOppositeFree": "Kostenlos, direkt gegenüber vom Salon",
+      "parkingOpposite": "Direkt gegenüber vom Salon"
+    }
+  },
+  "footer": {
+    "legalNotice": "Impressum",
+    "privacy": "Datenschutz",
+    "cookies": "Cookie-Richtlinie",
+    "legalNav": "Rechtliches",
+    "rights": "© {year} Kriado Studio",
+    "bookTitle": "Buch deinen Termin.",
+    "bookText": "Mit Termin. Barbershop online über Yeasy buchen, alles andere per WhatsApp oder Telefon.",
+    "visit": "Besuch uns",
+    "contact": "Kontakt",
+    "sections": "Seiten",
+    "legalTitle": "Rechtliches",
+    "hoursShort": "{days}, {time} Uhr",
+    "descriptor": "Friseur und Barbershop in Cala Ratjada, Mallorca",
+    "dayRange": "{from} bis {to}",
+    "yeasy": "Online buchen (Barbershop)",
+    "google": "Bewertungen auf Google"
+  },
+  "locations": {
+    "metaTitle": "Kriado Studio {city}: Friseur und Barbershop in der {street}",
+    "metaDescription": "Komm mit ins Kriado Studio, Friseur und Barbershop in Cala Ratjada: Ladenfront, Flur und Salon. Dazu Adresse, Öffnungszeiten, Telefon und WhatsApp.",
+    "indexTitle": "Standorte",
+    "indexMetaDescription": "Kriado Studio, Friseur und Barbershop auf Mallorca: Adresse, Öffnungszeiten und Anfahrt für jeden Standort.",
+    "lede": "{street}, {postalCode} {city}. Nur mit Termin.",
+    "infoTitle": "Adresse und Öffnungszeiten",
+    "localTitle": "Das Studio",
+    "seeLocation": "Zum Studio"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "metaDescription": "Die Galerie von Kriado Studio in Cala Ratjada: Styling, Farbe und Haarpflege und der Salon von innen.",
+    "filterLabel": "Fotos filtern",
+    "filters": {
+      "all": "Alle",
+      "cortes": "Schnitte",
+      "barba": "Bart",
+      "color": "Farbe",
+      "studio": "Das Studio"
+    },
+    "open": "Foto vergrößern: {alt}",
+    "dialog": "Vergrößertes Foto",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "close": "Schließen",
+    "counter": "{current} von {total}",
+    "empty": "In dieser Kategorie gibt es noch keine Fotos. Sieh dir alle an oder schau auf Instagram vorbei.",
+    "placeholder": "Foto einer Arbeit",
+    "metaTitle": "Galerie: der Salon in Cala Ratjada",
+    "metaDescriptionStudio": "Der Salon von Kriado Studio in Cala Ratjada: beleuchtete Spiegel, Wartebereich, Kérastase-Produkte. Friseur und Barbershop in der Carrer Leonor Servera 7.",
+    "introStudio": "Der Salon von innen, in der Carrer Leonor Servera 7. Schnitte und Farben findest du auf Instagram.",
+    "introWork": "Die Welt von Kriado Studio: Styling, Farbe und Haarpflege, mit der Handschrift des Hauses."
+  },
+  "about": {
+    "title": "Über uns",
+    "metaDescription": "Kriado Studio, Friseur und Barbershop in Cala Ratjada, 2026 von Carlos Kriado gegründet. Wie wir arbeiten, das Team, Kriado Private und unsere Produkte.",
+    "photoAlt": "Carlos Kriado bei der Arbeit im Kriado Studio",
+    "lead": "Kriado Studio ist Friseur und Barbershop in Cala Ratjada, 2026 von Carlos Kriado gegründet. Hierher kommen Damen und Herren jeden Alters.",
+    "story": "[DA_CLIENTE: Carlos' Geschichte, 150–200 Wörter: wie er angefangen hat, seit wann er Haare schneidet, warum Cala Ratjada]",
+    "teamTitle": "Das Team",
+    "teamPending": "[DA_CLIENTE: Team: Carlos, Pau (Stylist, in den Bewertungen erwähnt) und alle anderen im Salon, mit Aufgabe und Foto]",
+    "howTitle": "So arbeiten wir",
+    "how1": "Wir arbeiten mit Termin: Wähle Tag und Uhrzeit bei Yeasy oder schreib uns per WhatsApp.",
+    "how2": "Jede Leistung hat ihre eigene Zeit, von 15 Minuten bis zu anderthalb Stunden: Du siehst sie in der Karte, bevor du buchst.",
+    "how3": "Wir arbeiten mit {brands}.",
+    "salonAlt": "Der Salon von Kriado Studio mit Frisierstühlen und beleuchteten Spiegeln",
+    "metaTitle": "Über uns: Friseur und Barbershop in Cala Ratjada",
+    "story1": "Der Barbershop hat seine eigene Karte, von Kriado Essential bis Kriado Experience: Schnitt, Bart, Augenbrauen, Haarwäsche und Massage, dazu Blondierungen in Weiß und Farbakzente. Der Friseur kümmert sich um Damenhaarschnitte, Farbe und Strähnchen, Dauerwelle, Frisuren und Hochsteckfrisuren sowie Pflegebehandlungen.",
+    "story2": "Carlos begann 2020 im Barbershop, entwickelte seine Technik und seine Leidenschaft für Herrenpflege und machte 2022 den Schritt in die Profiwelt. 2026 gründete er Kriado Studio auf Mallorca und machte aus seinem Weg ein eigenes Projekt, aufgebaut auf technischer Exzellenz, Eleganz und einem zeitgemäßen Blick auf Pflege.",
+    "statement1": "Zwei Handwerke, ein Raum.",
+    "statement2": "Carlos Kriado, Gründer.",
+    "how4": "Wir beraten dich, bevor wir anfangen: Jeder Schnitt, jede Farbe und jede Typveränderung wird auf dein Haar und deinen Stil abgestimmt.",
+    "timelineTitle": "Von 2020 bis Kriado Studio",
+    "timeline": {
+      "start": "Carlos beginnt im Barbershop und entwickelt seine Technik und seine Leidenschaft für Herrenpflege.",
+      "pro": "Er macht den Schritt in die Profiwelt und verfeinert seinen Stil.",
+      "founded": "Kriado Studio eröffnet in Cala Ratjada: ein eigenes Projekt, für Damen und Herren."
+    },
+    "valuesTitle": "Was Kriado ausmacht",
+    "values": [
+      {
+        "title": "Technische Exzellenz",
+        "text": "Präzise Schnitte, Farbe immer nach einer Haaranalyse und professionelle Produkte wie Kérastase."
+      },
+      {
+        "title": "Eleganz",
+        "text": "Ein Salon, der bis ins Detail gepflegt ist, und Zeit für jeden Besuch, mit Termin."
+      },
+      {
+        "title": "Zeitgemäßer Blick",
+        "text": "Barbershop und Friseur von heute, für Damen und Herren, im Salon oder, mit Kriado Private, in Villen und Hotels."
+      }
+    ],
+    "team": {
+      "carlosRole": "Gründer und Barbier",
+      "carlosText": "Seit 2020 im Barbershop, seit 2022 als Profi. 2026 gründet er Kriado Studio.",
+      "pauRole": "Styling",
+      "pauText": "Schnitt, Farbe und Frisuren im Salon.",
+      "reviewSource": "Bewertung auf Google",
+      "carlosAlt": "Carlos Kriado bei einem Barbier-Ritual im Kriado Studio",
+      "pauAlt": "Pau im Kriado Studio, im Schaufenster das Logo"
+    },
+    "private": {
+      "title": "Kriado Private",
+      "text": "Das Kriado-Erlebnis außerhalb des Salons, mit voller Diskretion: ein exklusiver Service in Villen und Hotels auf ganz Mallorca, gedacht für Sportler, Unternehmer und Kunden, die einen Service nach Maß erwarten.",
+      "where": "Wo",
+      "whereValue": "Villen und Hotels",
+      "zone": "Gebiet",
+      "zoneValue": "Die ganze Insel",
+      "notice": "Buchung",
+      "noticeValue": "{from} bis {to} Tage im Voraus",
+      "cta": "Kriado Private per WhatsApp anfragen"
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "metaDescription": "Schreib, ruf an oder buche bei Kriado Studio, Friseur und Barbershop in der Carrer Leonor Servera 7, Cala Ratjada. Telefon und WhatsApp +34 616 08 51 94.",
+    "email": "E-Mail",
+    "formTitle": "Schreib uns per WhatsApp",
+    "name": "Name",
+    "message": "Nachricht",
+    "send": "In WhatsApp öffnen",
+    "elsewhere": "Du findest uns auch auf",
+    "metaTitle": "Kontakt und Termine in Cala Ratjada",
+    "waMessage": "Hallo, hier ist {name}.\n{message}",
+    "note": "Beim Senden öffnet sich WhatsApp mit deiner fertigen Nachricht. Diese Website speichert keine Daten: mehr dazu in der <link>Datenschutzerklärung</link>.",
+    "errors": {
+      "name": "Schreib deinen Namen.",
+      "message": "Schreib deine Nachricht."
+    },
+    "missing": "Es fehlt noch: {fields}.",
+    "fields": {
+      "name": "dein Name",
+      "message": "die Nachricht"
+    },
+    "phone": "Telefon"
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht.",
+    "text": "Vielleicht ist der Link falsch geschrieben oder die Seite wurde verschoben.",
+    "home": "Zur Startseite"
+  },
+  "status": {
+    "openNow": "Geöffnet",
+    "closesAt": "bis {time} Uhr",
+    "closedNow": "Geschlossen",
+    "opensToday": "heute ab {time} Uhr",
+    "opensTomorrow": "morgen ab {time} Uhr",
+    "opensOn": "{day} ab {time} Uhr"
+  },
+  "booking": {
+    "title": "In einer Minute gebucht",
+    "intro": "Drei Wege zu deinem Termin.",
+    "onlineTitle": "Barbershop: online, mit genauer Uhrzeit",
+    "onlineText": "Die Barbershop-Leistungen findest du bei Yeasy: Du siehst die freien Termine und wählst Tag und Uhrzeit.",
+    "onlineButton": "Bei Yeasy buchen",
+    "phoneTitle": "Per Telefon",
+    "waTitle": "Per WhatsApp, für alles",
+    "waText": "Für den Friseur und für jede Leistung. Sag uns, was du möchtest und wann es dir passt: Wir schreiben die Nachricht für dich und bestätigen die Uhrzeit.",
+    "service": "Leistung",
+    "servicePlaceholder": "Leistung wählen",
+    "day": "Tag",
+    "dayPlaceholder": "Tag wählen",
+    "slot": "Tageszeit",
+    "slots": {
+      "morning": "Vormittag, 10:00 bis 13:00 Uhr",
+      "midday": "Mittag, 13:00 bis 16:00 Uhr",
+      "afternoon": "Nachmittag, 16:00 bis 19:00 Uhr"
+    },
+    "slotsShort": {
+      "morning": "vormittags",
+      "midday": "mittags",
+      "afternoon": "nachmittags"
+    },
+    "name": "Dein Name",
+    "submit": "WhatsApp-Nachricht vorbereiten",
+    "preview": "So kommt deine Nachricht an",
+    "message": "Hallo, ich möchte einen Termin buchen.\nLeistung: {service}.\nTag: {day}, {slot}.\nIch heiße {name}.",
+    "missing": "Es fehlt noch: {fields}.",
+    "today": "heute",
+    "tomorrow": "morgen",
+    "book": "Buchen",
+    "bookService": "{service} buchen",
+    "direct": "Oder schreib uns direkt per WhatsApp",
+    "pastSlot": "schon vorbei",
+    "fields": {
+      "service": "Leistung",
+      "day": "Tag",
+      "slot": "Tageszeit",
+      "name": "dein Name"
+    },
+    "errors": {
+      "service": "Wähle eine Leistung.",
+      "day": "Wähle einen Tag.",
+      "slot": "Wähle eine Tageszeit.",
+      "name": "Schreib deinen Namen."
+    }
+  },
+  "bar": {
+    "label": "Schnellzugriff",
+    "book": "Buchen",
+    "call": "Anrufen",
+    "directions": "Route"
+  }
+}

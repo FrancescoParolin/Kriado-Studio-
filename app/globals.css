@@ -1,0 +1,627 @@
+@import 'tailwindcss';
+
+/* Cinque colori e nient'altro: la palette di default di Tailwind è spenta. */
+@theme {
+  --color-*: initial;
+  --color-negro: #000000;
+  --color-blanco: #ffffff;
+  --color-hueso: #ede9e1;
+  --color-gris: #5c5c5c;
+  --color-oro: #b9953f;
+
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+}
+
+:root {
+  --header-h: 64px;
+  /* Altezza della barra fissa su telefono e tablet (components/MobileBar.tsx); 0 da 1024px in su. */
+  --bar-h: calc(64px + env(safe-area-inset-bottom));
+  --gutter: 24px;
+  /* Margine laterale su griglia 8px: 24 telefono, 40 tablet, 72 desktop largo. */
+  --pad: 24px;
+  /* Alone nero attorno all'anello Oro sulle bande bianche (Oro su bianco è 2,8:1). */
+  --focus-halo: 0 0 0 6px var(--color-negro);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --pad: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 80px;
+    --gutter: 32px;
+    --bar-h: 0px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --pad: 72px;
+  }
+}
+
+[data-tone='light'] {
+  --focus-halo: 0 0 0 6px var(--color-negro);
+}
+
+[data-tone='dark'] {
+  --focus-halo: none;
+}
+
+@layer base {
+  html {
+    background: var(--color-negro);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: var(--header-h);
+    scroll-padding-bottom: var(--bar-h);
+  }
+
+  /* Mai testo fuori schermo, anche con parole lunghissime. */
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: break-word;
+  }
+
+  body {
+    padding-bottom: var(--bar-h);
+    background: var(--color-blanco);
+    color: var(--color-negro);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    font-weight: 400;
+    font-variation-settings: 'wdth' 100;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-oro);
+    outline-offset: 2px;
+    box-shadow: var(--focus-halo);
+  }
+
+  a,
+  button,
+  select,
+  input,
+  textarea,
+  summary {
+    transition-property: opacity, transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+  }
+
+  a:active,
+  button:active {
+    opacity: 0.7;
+  }
+
+  a.link:hover,
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  select:hover,
+  input:hover,
+  textarea:hover {
+    box-shadow: inset 0 0 0 1px currentColor;
+  }
+
+  ::selection {
+    background: var(--color-negro);
+    color: var(--color-hueso);
+  }
+
+  [data-tone='dark'] ::selection {
+    background: var(--color-hueso);
+    color: var(--color-negro);
+  }
+}
+
+/* Tipografia: una famiglia, larghezza 125 e peso 800 per il display. */
+/* Scala a gradini: ogni misura è un gradino della scala, cambia solo ai breakpoint. */
+@utility display-xl {
+  font-size: 2.1875rem;
+  @media (min-width: 768px) {
+    font-size: 3.4375rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 4.3125rem;
+  }
+  @media (min-width: 1280px) {
+    font-size: 5.375rem;
+  }
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+@utility display-rec {
+  font-size: 2.1875rem;
+  @media (min-width: 768px) {
+    font-size: 2.75rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 3.4375rem;
+  }
+  @media (min-width: 1280px) {
+    font-size: 4.3125rem;
+  }
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+@utility display-l {
+  font-size: 1.75rem;
+  @media (min-width: 768px) {
+    font-size: 2.1875rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 2.75rem;
+  }
+  @media (min-width: 1280px) {
+    font-size: 3.4375rem;
+  }
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+@utility quote {
+  font-size: 1.75rem;
+  @media (min-width: 1024px) {
+    font-size: 2.1875rem;
+  }
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+@utility lead {
+  font-size: 1.375rem;
+  @media (min-width: 1024px) {
+    font-size: 1.75rem;
+  }
+  line-height: 1.35;
+}
+
+/* Testo lungo "leggero" (spunto: millimetrobarber.it): peso più sottile, interlinea ampia, righe non troppo lunghe. */
+@utility prose-airy {
+  font-weight: 350;
+  line-height: 1.8;
+  max-width: 60ch;
+}
+
+@utility ui {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@utility wordmark {
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+@utility display-num {
+  font-size: 4.3125rem;
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  @media (min-width: 768px) {
+    font-size: 6.6875rem;
+  }
+  @media (min-width: 1280px) {
+    font-size: 8.375rem;
+  }
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+@utility grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+@utility link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bande: 64px mobile, 96px desktop. Due bande consecutive dello stesso colore non sommano lo spazio. */
+/* Più aria che nel brief (64/96): il ritmo largo fa parte del tono premium chiesto da Paro. */
+@utility band {
+  padding-block: 80px;
+  @media (min-width: 1024px) {
+    padding-block: 128px;
+  }
+}
+
+[data-tone='light'] + [data-tone='light'].band,
+[data-tone='dark'] + [data-tone='dark'].band {
+  padding-top: 0;
+}
+
+/* Movimenti di risposta: apertura menu, cambio filtro, cambio foto nella lightbox. */
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.anim-drop-in {
+  animation: drop-in 200ms ease-out;
+}
+
+.anim-fade-in {
+  animation: fade-in 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-drop-in,
+  .anim-fade-in {
+    animation: none;
+  }
+}
+
+/* ---------- Recorrido ---------- */
+
+.rec-track {
+  position: relative;
+  container-type: inline-size;
+  background: var(--color-negro);
+}
+
+.rec-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--color-negro);
+  /* Didascalie dei luoghi tolte (richiesta di Paro, 9 ottobre 2026): la foto arriva fino alla barra o al fondo. */
+  --caption-h: 0px;
+  --open: 0;
+  /* Mobile: la finestra è una banda in alto, chiusa dal basso quanto è alto il testo. */
+  --win-left: 0px;
+  --win-bottom: calc(var(--intro-h, 340px) + 16px);
+}
+
+/* Telefoni bassi (es. 375×667): stacco più stretto, così la foto resta sopra un terzo dello schermo. */
+@media (max-width: 1023px) and (max-height: 700px) {
+  .rec-stage {
+    --win-bottom: calc(var(--intro-h, 340px) + 8px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rec-stage {
+    /* Desktop: la finestra parte dalla colonna 8 e va al bordo destro, come una porta. */
+    --win-left: calc(
+      (100cqw - min(100cqw, 1440px)) / 2 + var(--pad) +
+        6 * ((min(100cqw, 1440px) - 2 * var(--pad) - 11 * var(--gutter)) / 12 + var(--gutter))
+    );
+    --win-bottom: 0px;
+  }
+}
+
+.rec-frames {
+  position: absolute;
+  top: var(--header-h);
+  bottom: calc(var(--caption-h) + var(--bar-h));
+  left: 0;
+  right: 0;
+}
+
+.rec-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* L'apertura della prima finestra muove left/bottom: il contenimento limita il ricalcolo a questo riquadro. */
+  contain: layout paint;
+}
+
+.rec-frame--first {
+  left: calc((1 - var(--open)) * var(--win-left));
+  bottom: calc((1 - var(--open)) * var(--win-bottom));
+}
+
+.rec-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus-v, 50% 50%);
+  transform-origin: 50% 50%;
+}
+
+@media (orientation: landscape) {
+  .rec-img {
+    object-position: var(--focus-h, 50% 50%);
+  }
+}
+
+.rec-intro {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--caption-h) + var(--bar-h));
+}
+
+/* Desktop: il testo sta a metà altezza accanto alla finestra, non schiacciato in basso. */
+@media (min-width: 1024px) {
+  .rec-intro {
+    top: var(--header-h);
+    display: flex;
+    align-items: center;
+  }
+  .rec-intro > .wrap {
+    width: 100%;
+  }
+}
+
+.rec-static {
+  display: none;
+}
+
+/* Movimento ridotto: niente sticky né dissolvenze. Primo fotogramma fermo, poi le altre foto in fila. */
+@media (prefers-reduced-motion: reduce) {
+  .rec-track {
+    height: auto !important;
+  }
+  .rec-stage {
+    position: relative;
+  }
+  .rec-frame:not(.rec-frame--first) {
+    display: none;
+  }
+  .rec-frame,
+  .rec-intro,
+  .rec-img {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .rec-frame--first {
+    left: var(--win-left) !important;
+    bottom: var(--win-bottom) !important;
+  }
+  .rec-static {
+    display: block;
+  }
+}
+
+/* Capolettera: la prima lettera del paragrafo grande, nello stile del marchio, alta circa tre righe. */
+.drop-cap::first-letter {
+  float: left;
+  margin: 0.04em 0.1em 0 0;
+  font-size: 4.4em;
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  line-height: 0.78;
+}
+
+/* ---------- Motion (9 ottobre 2026, richiesta di Paro) ---------- */
+
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/*
+ * Apertura: "Kriado Studio" nero su bianco, le lettere salgono, poi il nome si sfuoca e il bianco svanisce.
+ * Solo CSS, dura 1,7s, una volta per sessione (lo script in <head> mette data-intro="off" dalla seconda pagina).
+ */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 0 var(--pad);
+  background: var(--color-blanco);
+  color: var(--color-negro);
+  animation: intro-out 550ms cubic-bezier(0.7, 0, 0.3, 1) 1200ms forwards;
+}
+.intro-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: intro-blur 600ms cubic-bezier(0.4, 0, 0.2, 1) 950ms forwards;
+}
+.intro-mark {
+  width: 5.5rem;
+  height: 4.375rem;
+  opacity: 0;
+  transform: scale(0.85);
+  animation: intro-letter 700ms var(--ease-out-expo) 60ms forwards;
+}
+@media (min-width: 768px) {
+  .intro-mark {
+    width: 8rem;
+    height: 6.375rem;
+  }
+}
+.intro-name {
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .intro-name {
+    font-size: 6.6875rem;
+  }
+}
+@media (min-width: 1280px) {
+  .intro-name {
+    font-size: 8.375rem;
+  }
+}
+.intro-name .l {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  animation: intro-letter 650ms var(--ease-out-expo) forwards;
+  animation-delay: calc(260ms + var(--i) * 30ms);
+}
+@keyframes intro-letter {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes intro-blur {
+  to {
+    opacity: 0;
+    filter: blur(16px);
+    transform: scale(1.05);
+  }
+}
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+html[data-intro='off'] .intro,
+html[data-intro='done'] .intro {
+  display: none;
+}
+
+/*
+ * Testi e foto che entrano mentre si scorre. L'attributo data-motion lo mette MotionObserver al primo render nel browser:
+ * senza JavaScript tutto resta visibile. Parole: ogni parola sale da sotto una maschera.
+ */
+.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.1em 0 0.16em;
+  margin: -0.1em 0 -0.16em;
+}
+.w > span {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-motion] [data-reveal='up'] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 800ms var(--ease-out-expo),
+      transform 800ms var(--ease-out-expo);
+    transition-delay: calc(var(--reveal-base, 0ms) + var(--d, 0) * 90ms);
+  }
+  html[data-motion] [data-reveal='words'] .w > span {
+    transform: translateY(110%);
+    transition: transform 900ms var(--ease-out-expo);
+    transition-delay: calc(var(--reveal-base, 0ms) + min(var(--i), 14) * 45ms);
+  }
+  html[data-motion] [data-reveal='img'] {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1100ms var(--ease-out-expo);
+    transition-delay: calc(var(--reveal-base, 0ms) + var(--d, 0) * 90ms);
+  }
+  html[data-motion] [data-reveal='img'] img {
+    transform: scale(1.12);
+    transition: transform 1500ms var(--ease-out-expo);
+  }
+  html[data-motion] [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  html[data-motion] [data-reveal].is-in .w > span,
+  html[data-motion] [data-reveal='img'].is-in img {
+    transform: none;
+  }
+  /* Le stelle si accendono una dopo l'altra quando il blocco entra. */
+  html[data-motion] [data-reveal] .star {
+    transform: scale(0.2);
+    opacity: 0;
+    transition:
+      transform 600ms var(--ease-out-expo),
+      opacity 400ms ease-out;
+    transition-delay: calc(250ms + var(--i) * 80ms);
+  }
+  html[data-motion] [data-reveal].is-in .star {
+    transform: none;
+    opacity: 1;
+  }
+  /* Con l'apertura in corso, il testo dell'hero aspetta che il nome si sfuochi. */
+  html[data-intro='on'] .rec-intro {
+    --reveal-base: 1150ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+
+/* Seconda metà della frase della casa: solo contorno, nero sul bianco (si legge perché è molto grande). */
+.statement-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-negro);
+}
+
+/* Nastro di testo che scorre di lato mentre si scorre la pagina. */
+.ribbon-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-hueso);
+}
+
+/* Marchio come maschera colorabile (vedi LogoMark). */
+.logo-mark {
+  background-color: currentColor;
+  -webkit-mask: url('/images/logo/kriado-mark.png') center / contain no-repeat;
+  mask: url('/images/logo/kriado-mark.png') center / contain no-repeat;
+}
