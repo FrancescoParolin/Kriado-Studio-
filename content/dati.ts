@@ -75,12 +75,12 @@ export const DATI = {
     taxi: { metros: 300 },
   },
 
-  /** [DA_CLIENTE] Dati legali e dominio. */
-  dominio: null as string | null,
-  /** Da Carlos (9 ottobre 2026). Manca l'indirizzo fiscale. */
+  /** Dominio definitivo (comprato da Carlos su Namecheap il 13 ottobre 2026): rende il sito indicizzabile. */
+  dominio: 'https://kriadostudio.com' as string | null,
+  /** Da Carlos (9 ottobre 2026). Come domicilio si usa l'indirizzo del salone (scelta di Paro, 13 ottobre 2026). */
   legal: {
     razonSocial: 'Juan Carlos García Criado' as string | null,
     nif: '47564064H' as string | null,
-    domicilioFiscal: null as string | null, // [DA_CLIENTE]
+    domicilioFiscal: 'Carrer Leonor Servera 7, 07590 Cala Ratjada, Illes Balears' as string | null,
   },
 } as const;

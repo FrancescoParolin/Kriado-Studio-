@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { ButtonLink } from '@/components/Button';
 import { ExternalGlyph } from '@/components/Glyphs';
-import { Pending, Section } from '@/components/Section';
+import { Section } from '@/components/Section';
 import { DATI } from '@/content/dati';
 import { gallery } from '@/content/gallery';
 import {
@@ -201,7 +201,6 @@ export function Servicios() {
       <p className="mt-10 lg:mt-12">
         {t('home.services.brands', { brands: format.list(brands, { type: 'conjunction' }) })}
       </p>
-      <Pending className="mt-2 block">{t('home.services.pending')}</Pending>
     </Section>
   );
 }

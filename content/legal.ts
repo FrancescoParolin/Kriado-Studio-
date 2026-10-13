@@ -10,7 +10,7 @@ export type LegalKey = 'aviso' | 'privacidad' | 'cookies';
 
 const holder = {
   es: `Titular: [RAGIONE_SOCIALE]. NIF: [NIF]. Domicilio: [INDIRIZZO_FISCALE]. Email: [EMAIL]. Teléfono: ${DATI.telefonoVisible}.`,
-  en: `Owner: [RAGIONE_SOCIALE]. Tax ID (NIF): [NIF]. Registered address: [INDIRIZZO_FISCALE]. Email: [EMAIL]. Phone: ${DATI.telefonoVisible}.`,
+  en: `Owner: [RAGIONE_SOCIALE]. Tax ID (NIF): [NIF]. Address: [INDIRIZZO_FISCALE]. Email: [EMAIL]. Phone: ${DATI.telefonoVisible}.`,
   de: `Inhaber: [RAGIONE_SOCIALE]. Steuernummer (NIF): [NIF]. Anschrift: [INDIRIZZO_FISCALE]. E-Mail: [EMAIL]. Telefon: ${DATI.telefonoVisible}.`,
 };
 
