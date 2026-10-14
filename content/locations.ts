@@ -123,17 +123,17 @@ export const locations: Location[] = [
     /**
      * "El local": quattro foto verticali della stessa forma, così su telefono fanno una griglia 2×2 ordinata.
      * 14 ottobre 2026 (Paro): via la poltrona tagliata e gli scaffali scuri; dentro sala d'attesa intera e zona lavaggio,
-     * specchi nella versione verticale.
+     * al posto degli specchi il corridoio (seconda foto del recorrido, ritaglio 4:5).
      */
     gallery: [
       {
-        src: '/images/galeria/salon-01.jpg',
+        src: '/images/galeria/pasillo-01.jpg',
         width: 1080,
         height: 1350,
         alt: {
-          es: 'La pared de espejos iluminados del salón, con los sillones de corte',
-          en: "The salon's wall of lit mirrors, with the styling chairs",
-          de: 'Die beleuchtete Spiegelwand des Salons mit den Frisierstühlen',
+          es: 'El pasillo con el mostrador de recepción, estanterías iluminadas y lámparas colgantes',
+          en: 'The hallway, with the reception desk, lit shelves and pendant lights',
+          de: 'Der Flur mit Empfangstheke, beleuchteten Regalen und Hängeleuchten',
         },
       },
       {

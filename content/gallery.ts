@@ -84,14 +84,14 @@ const work: GalleryItem[] = [
  */
 const studio: GalleryItem[] = [
   {
-    src: '/images/galeria/salon-01.jpg',
+    src: '/images/galeria/pasillo-01.jpg',
     width: 1080,
     height: 1350,
     category: 'studio',
     alt: {
-      es: 'La pared de espejos iluminados del salón, con los sillones de corte',
-      en: "The salon's wall of lit mirrors, with the styling chairs",
-      de: 'Die beleuchtete Spiegelwand des Salons mit den Frisierstühlen',
+      es: 'El pasillo con el mostrador de recepción, estanterías iluminadas y lámparas colgantes',
+      en: 'The hallway, with the reception desk, lit shelves and pendant lights',
+      de: 'Der Flur mit Empfangstheke, beleuchteten Regalen und Hängeleuchten',
     },
   },
   {
