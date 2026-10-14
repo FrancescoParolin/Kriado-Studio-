@@ -27,21 +27,21 @@ export async function SedePage({ location, locale, url }: { location: Location; 
         <h2 id="sede-local-titulo" className="display-l text-blanco">
           {t('locations.localTitle')}
         </h2>
+        {/* Griglia regolare: tutte le foto 4:5 con gli angoli morbidi (prima colonne a mosaico, disordinate su telefono). */}
         <ul
-          className={`mt-8 columns-2 gap-x-[var(--gutter)] lg:mt-12 ${
-            location.gallery.length <= 4 ? 'lg:columns-4' : 'lg:columns-3'
+          className={`mt-8 grid grid-cols-2 gap-[var(--gutter)] lg:mt-12 ${
+            location.gallery.length <= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'
           }`}
         >
           {location.gallery.map((img) => (
-            <li key={img.src} className="mb-[var(--gutter)] break-inside-avoid">
+            <li key={img.src} className="soft relative aspect-[4/5] overflow-hidden bg-hueso">
               <Image
                 src={resolveImage(img.src)}
-                width={img.width}
-                height={img.height}
+                fill
                 alt={img.alt[locale]}
-                sizes="(min-width: 1024px) 33vw, 50vw"
+                sizes="(min-width: 1024px) 25vw, 50vw"
                 quality={70}
-                className="h-auto w-full"
+                className="object-cover"
               />
             </li>
           ))}

@@ -120,15 +120,30 @@ export const locations: Location[] = [
         },
       },
     ],
+    /**
+     * "El local": quattro foto verticali della stessa forma, così su telefono fanno una griglia 2×2 ordinata.
+     * 14 ottobre 2026 (Paro): via la poltrona tagliata e gli scaffali scuri; dentro sala d'attesa intera e zona lavaggio,
+     * specchi nella versione verticale.
+     */
     gallery: [
       {
-        src: '/images/sede/sede-cala-ratjada-01.jpg',
-        width: 1600,
-        height: 1067,
+        src: '/images/galeria/salon-01.jpg',
+        width: 1080,
+        height: 1350,
         alt: {
-          es: 'Espejos con luz integrada en el salón de Kriado Studio',
-          en: 'Mirrors with built-in lights in the Kriado Studio salon',
-          de: 'Spiegel mit eingebautem Licht im Salon von Kriado Studio',
+          es: 'La pared de espejos iluminados del salón, con los sillones de corte',
+          en: "The salon's wall of lit mirrors, with the styling chairs",
+          de: 'Die beleuchtete Spiegelwand des Salons mit den Frisierstühlen',
+        },
+      },
+      {
+        src: '/images/galeria/espera-01.jpg',
+        width: 1080,
+        height: 1350,
+        alt: {
+          es: 'La sala de espera, con sofá y sillón blancos capitoné',
+          en: 'The waiting area, with a white buttoned sofa and armchair',
+          de: 'Der Wartebereich mit weißem Chesterfield-Sofa und Sessel',
         },
       },
       {
@@ -142,23 +157,13 @@ export const locations: Location[] = [
         },
       },
       {
-        src: '/images/sede/sede-cala-ratjada-03.jpg',
+        src: '/images/galeria/lavado-01.jpg',
         width: 1080,
         height: 1350,
         alt: {
-          es: 'Sillón blanco capitoné en la sala de espera',
-          en: 'White buttoned armchair in the waiting area',
-          de: 'Weißer Chesterfield-Sessel im Wartebereich',
-        },
-      },
-      {
-        src: '/images/sede/sede-cala-ratjada-04.jpg',
-        width: 1600,
-        height: 1067,
-        alt: {
-          es: 'Estanterías iluminadas de madera junto a la recepción',
-          en: 'Lit wooden shelves by the reception desk',
-          de: 'Beleuchtete Holzregale neben der Empfangstheke',
+          es: 'La zona de lavado, con los lavacabezas blancos y la marca Kérastase en la pared',
+          en: 'The wash area, with white basins and the Kérastase sign on the wall',
+          de: 'Der Waschbereich mit weißen Waschbecken und dem Kérastase-Schriftzug an der Wand',
         },
       },
     ],
