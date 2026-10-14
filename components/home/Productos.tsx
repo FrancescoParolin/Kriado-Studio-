@@ -34,7 +34,7 @@ export function Productos() {
               alt={p.image.alt[locale]}
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               quality={70}
-              className="aspect-square w-full object-cover"
+              className="soft aspect-square w-full object-cover"
             />
             <p className="mt-4">
               <span className="font-semibold">{p.name}</span> <span className="text-gris">{p.brand}</span>

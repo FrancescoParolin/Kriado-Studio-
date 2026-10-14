@@ -113,7 +113,7 @@ export function GalleryGrid({
                 type="button"
                 onClick={() => setCurrent(i)}
                 aria-label={t('open', { alt: img.alt })}
-                className="group relative block aspect-[4/5] w-full cursor-zoom-in overflow-hidden bg-negro"
+                className="soft group relative block aspect-[4/5] w-full cursor-zoom-in overflow-hidden bg-negro"
               >
                 <Image
                   src={img.src}
@@ -132,7 +132,7 @@ export function GalleryGrid({
           {filter === 'all'
             ? placeholders.map((file) => (
                 <li key={file} data-pending>
-                  <div className="flex aspect-[4/5] w-full flex-col items-center justify-center gap-2 border border-dashed border-gris p-4 text-center">
+                  <div className="soft flex aspect-[4/5] w-full flex-col items-center justify-center gap-2 border border-dashed border-gris p-4 text-center">
                     <span className="text-gris">{t('placeholder')}</span>
                     <span className="ui tabular break-all">{file}</span>
                   </div>

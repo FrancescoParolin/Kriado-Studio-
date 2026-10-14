@@ -5,7 +5,7 @@ type Tone = 'light' | 'dark';
 type Variant = 'primary' | 'secondary';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-[2px] px-6 ui decoration-1 underline-offset-4 hover:underline active:translate-y-px';
+  'inline-flex items-center justify-center gap-2 rounded-full px-6 ui decoration-1 underline-offset-4 hover:underline active:translate-y-px';
 const oneLine = 'h-12 whitespace-nowrap';
 /** Su telefono a tutta larghezza e su più righe se serve (testi lunghi in DE a 320px). */
 const wrapping = 'min-h-12 w-full py-2 text-center sm:w-auto sm:whitespace-nowrap';

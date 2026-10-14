@@ -17,7 +17,7 @@ const SLOTS: Array<{ id: Slot; ends: number }> = [
 type Field = 'service' | 'day' | 'slot' | 'name';
 
 const fieldClass = (invalid: boolean) =>
-  `mt-2 block h-12 w-full border border-negro bg-blanco px-4 font-normal text-negro ${
+  `mt-2 block h-12 w-full rounded-[var(--r-field)] border border-negro bg-blanco px-4 font-normal text-negro ${
     invalid ? 'shadow-[inset_0_0_0_2px_#000]' : ''
   }`;
 
@@ -218,7 +218,7 @@ export function BookingForm({
             return (
               <label
                 key={id}
-                className={`flex min-h-12 items-center gap-4 border px-4 ${
+                className={`flex min-h-12 items-center gap-4 rounded-[var(--r-field)] border px-4 ${
                   over
                     ? 'cursor-not-allowed border-gris text-gris'
                     : active

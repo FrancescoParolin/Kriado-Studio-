@@ -31,7 +31,7 @@ export function ProximasAperturas() {
             data-reveal="up"
             data-tone="dark"
             style={{ '--d': i } as CSSProperties}
-            className="flex min-h-40 flex-col justify-between gap-6 overflow-hidden bg-negro p-6 text-hueso lg:min-h-56 lg:p-8"
+            className="soft flex min-h-40 flex-col justify-between gap-6 overflow-hidden bg-negro p-6 text-hueso lg:min-h-56 lg:p-8"
           >
             <span className="ui text-oro">{t('soon')}</span>
             <span className="sr-only">{t('secret')}</span>

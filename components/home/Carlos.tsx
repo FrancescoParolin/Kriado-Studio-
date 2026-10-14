@@ -21,7 +21,7 @@ export function Carlos() {
     <Section tone="light" labelledBy="carlos-titulo">
       <div className="grid-12 gap-y-8 lg:items-center">
         <div className="col-span-12 sm:col-span-8 lg:col-span-5">
-          <div data-reveal="img" className="relative aspect-[4/5] overflow-hidden bg-hueso">
+          <div data-reveal="img" className="soft relative aspect-[4/5] overflow-hidden bg-hueso">
             <Image
               src={resolveImage(photo.src)}
               fill

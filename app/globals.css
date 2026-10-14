@@ -21,6 +21,9 @@
   --pad: 24px;
   /* Alone nero attorno all'anello Oro sulle bande bianche (Oro su bianco è 2,8:1). */
   --focus-halo: 0 0 0 6px var(--color-negro);
+  /* Angoli morbidi (Paro, 14 ottobre 2026): foto e riquadri 12px su telefono e 16px da 1024px, campi dei moduli 10px, bottoni a pillola. */
+  --r-soft: 12px;
+  --r-field: 10px;
 }
 
 @media (min-width: 768px) {
@@ -34,6 +37,7 @@
     --header-h: 80px;
     --gutter: 32px;
     --bar-h: 0px;
+    --r-soft: 16px;
   }
 }
 
@@ -41,6 +45,12 @@
   :root {
     --pad: 72px;
   }
+}
+
+/* Foto e riquadri con gli angoli morbidi. --clip-r tiene gli angoli tondi anche durante l'entrata delle foto (clip-path). */
+.soft {
+  border-radius: var(--r-soft);
+  --clip-r: var(--r-soft);
 }
 
 [data-tone='light'] {
@@ -565,7 +575,7 @@ html[data-intro='done'] .intro {
     transition-delay: calc(var(--reveal-base, 0ms) + min(var(--i), 14) * 45ms);
   }
   html[data-motion] [data-reveal='img'] {
-    clip-path: inset(100% 0 0 0);
+    clip-path: inset(100% 0 0 0 round var(--clip-r, 0px));
     transition: clip-path 1100ms var(--ease-out-expo);
     transition-delay: calc(var(--reveal-base, 0ms) + var(--d, 0) * 90ms);
   }
@@ -576,7 +586,7 @@ html[data-intro='done'] .intro {
   html[data-motion] [data-reveal].is-in {
     opacity: 1;
     transform: none;
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0 round var(--clip-r, 0px));
   }
   html[data-motion] [data-reveal].is-in .w > span,
   html[data-motion] [data-reveal='img'].is-in img {

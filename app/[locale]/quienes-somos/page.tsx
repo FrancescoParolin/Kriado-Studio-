@@ -81,7 +81,7 @@ export default async function QuienesSomosPage({ params }: Props) {
       <Section tone="light">
         <div className="grid-12 gap-y-12">
           <div className="order-2 col-span-12 flex flex-col-reverse gap-12 lg:order-1 lg:col-span-5 lg:flex-col">
-            <div data-reveal="img" className="relative aspect-[4/5] overflow-hidden bg-hueso">
+            <div data-reveal="img" className="soft relative aspect-[4/5] overflow-hidden bg-hueso">
               <Image
                 src={resolveImage(photoA.src)}
                 fill
@@ -113,7 +113,7 @@ export default async function QuienesSomosPage({ params }: Props) {
                 {t('about.story1')}
               </p>
             </div>
-            <div data-reveal="img" className="relative aspect-[3/2] overflow-hidden bg-hueso">
+            <div data-reveal="img" className="soft relative aspect-[3/2] overflow-hidden bg-hueso">
               <Image
                 src={resolveImage(photoB.src)}
                 fill
@@ -177,7 +177,7 @@ export default async function QuienesSomosPage({ params }: Props) {
         </h2>
         <div className="grid-12 mt-10 gap-y-12 lg:mt-16">
           <div className="col-span-12 md:col-span-6 lg:col-span-5">
-            <div data-reveal="img" className="relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
+            <div data-reveal="img" className="soft relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
               <Image
                 src={resolveImage('/images/equipo/carlos-retrato.jpg')}
                 fill
@@ -194,7 +194,7 @@ export default async function QuienesSomosPage({ params }: Props) {
             </div>
           </div>
           <div className="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-7">
-            <div data-reveal="img" className="relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
+            <div data-reveal="img" className="soft relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
               <Image
                 src={resolveImage('/images/equipo/pau-equipo.jpg')}
                 fill

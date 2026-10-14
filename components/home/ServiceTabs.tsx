@@ -32,7 +32,7 @@ export function ServiceTabs({ label, tabs, panels }: { label: string; tabs: Tab[
         role="tablist"
         aria-label={label}
         onKeyDown={onKeyDown}
-        className="mt-8 inline-flex max-w-full flex-wrap gap-1 border border-negro p-1 lg:mt-12"
+        className="mt-8 inline-flex max-w-full flex-wrap gap-1 rounded-full border border-negro p-1 lg:mt-12"
       >
         {tabs.map((tab, i) => {
           const selected = active === i;
@@ -49,7 +49,7 @@ export function ServiceTabs({ label, tabs, panels }: { label: string; tabs: Tab[
               aria-controls={`servicios-panel-${tab.id}`}
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(i)}
-              className={`ui inline-flex min-h-12 items-baseline gap-2 px-5 py-3 transition-opacity duration-200 active:opacity-70 ${
+              className={`ui inline-flex min-h-12 items-baseline gap-2 rounded-full px-5 py-3 transition-opacity duration-200 active:opacity-70 ${
                 selected ? 'bg-negro text-blanco' : 'text-negro hover:underline hover:underline-offset-4'
               }`}
             >

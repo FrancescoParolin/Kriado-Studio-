@@ -81,7 +81,7 @@ function Row({ service, locale }: { service: Service; locale: Locale }) {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <p className="text-lg leading-snug font-semibold lg:text-[1.375rem]">{service.name[locale]}</p>
           {service.popular ? (
-            <span className="ui bg-negro px-2 py-1 leading-none text-blanco">{t('popularTag')}</span>
+            <span className="ui rounded-full bg-negro px-2.5 py-1 leading-none text-blanco">{t('popularTag')}</span>
           ) : null}
         </div>
         <p className="mt-1 text-gris">
@@ -113,7 +113,7 @@ function Row({ service, locale }: { service: Service; locale: Locale }) {
 function PrivateCard({ service, locale }: { service: Service; locale: Locale }) {
   const t = useTranslations();
   return (
-    <div data-reveal="up" data-tone="dark" className="mt-8 bg-negro p-6 text-hueso lg:p-8">
+    <div data-reveal="up" data-tone="dark" className="soft mt-8 bg-negro p-6 text-hueso lg:p-8">
       <p className="quote text-blanco">{service.name[locale]}</p>
       {/* Testo della marca (lo stesso di Quiénes somos): la descrizione breve con i giorni è già nella riga in oro. */}
       <p className="prose-airy mt-3">{t('about.private.text')}</p>
@@ -147,7 +147,7 @@ function GroupPanel({ group, locale }: { group: ServiceGroup; locale: Locale }) 
     <div className="grid-12 gap-y-8 lg:items-start">
       <figure className="col-span-12 lg:sticky lg:top-[calc(var(--header-h)+24px)] lg:col-span-5">
         {photo ? (
-          <div data-reveal="img" className="relative aspect-[3/2] overflow-hidden bg-hueso lg:aspect-[4/5]">
+          <div data-reveal="img" className="soft relative aspect-[3/2] overflow-hidden bg-hueso lg:aspect-[4/5]">
             <Image
               src={resolveImage(photo.src)}
               fill

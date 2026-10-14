@@ -188,7 +188,7 @@ export function Recorrido({ frames, intro, label }: Props) {
       <div className="rec-static">
         {frames.slice(1).map((frame, i) => (
           <figure key={i} className="pb-8">
-            <div className="relative aspect-[9/16] w-full overflow-hidden landscape:aspect-[3/2]">
+            <div className="soft relative aspect-[9/16] w-full overflow-hidden landscape:aspect-[3/2]">
               {frame.stillPicture}
             </div>
           </figure>

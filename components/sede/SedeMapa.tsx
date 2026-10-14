@@ -20,7 +20,7 @@ export function SedeMapa({ location }: { location: Location }) {
         rel="noopener"
         aria-label={`${t('location.mapLabel')} ${t('cta.newTab')}`}
         data-reveal="img"
-        className="relative block aspect-[3/2] overflow-hidden bg-hueso lg:aspect-[4/3]"
+        className="soft relative block aspect-[3/2] overflow-hidden bg-hueso lg:aspect-[4/3]"
       >
         <Image
           src={resolveImage(location.map.src)}
@@ -40,7 +40,7 @@ export function SedeMapa({ location }: { location: Location }) {
         </span>
         <span
           aria-hidden="true"
-          className="ui absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(100%+32px)] bg-negro px-4 py-2 whitespace-nowrap text-blanco sm:ml-6 sm:translate-x-0 sm:-translate-y-[calc(100%+8px)]"
+          className="ui absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(100%+32px)] rounded-full bg-negro px-4 py-2 whitespace-nowrap text-blanco sm:ml-6 sm:translate-x-0 sm:-translate-y-[calc(100%+8px)]"
         >
           Kriado Studio
         </span>

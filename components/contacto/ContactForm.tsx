@@ -9,7 +9,7 @@ type Field = 'name' | 'message';
 const IDS: Record<Field, string> = { name: 'contacto-nombre', message: 'contacto-mensaje' };
 
 const field = (invalid: boolean) =>
-  `mt-2 block w-full border border-negro bg-blanco px-4 font-normal text-negro ${invalid ? 'shadow-[inset_0_0_0_2px_#000]' : ''}`;
+  `mt-2 block w-full rounded-[var(--r-field)] border border-negro bg-blanco px-4 font-normal text-negro ${invalid ? 'shadow-[inset_0_0_0_2px_#000]' : ''}`;
 
 /**
  * "Escríbenos": nome e messaggio diventano un messaggio WhatsApp già scritto, come la prenotazione in home.
