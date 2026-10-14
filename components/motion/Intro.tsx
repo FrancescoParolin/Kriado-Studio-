@@ -31,5 +31,7 @@ export function Intro() {
 /**
  * Script in <head>, prima del primo disegno: l'apertura si vede una volta per sessione e mai con il movimento ridotto.
  * data-intro: "on" mentre gira, "off" se va saltata; MotionObserver lo porta a "done" quando è finita.
+ * Toglie anche commenti e a capo vuoti dal <head>: Netlify inserisce un commento pubblicitario e React, trovandolo,
+ * rifà la pagina (errore #418).
  */
-export const introScript = `(function(){var d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('kriado-intro')){d.setAttribute('data-intro','off')}else{sessionStorage.setItem('kriado-intro','1');d.setAttribute('data-intro','on')}}catch(e){d.setAttribute('data-intro','off')}})();`;
+export const introScript = `(function(){var d=document.documentElement;for(var n=document.head.firstChild,x;n;n=x){x=n.nextSibling;if(n.nodeType===8||(n.nodeType===3&&!n.nodeValue.trim()))n.remove()}try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('kriado-intro')){d.setAttribute('data-intro','off')}else{sessionStorage.setItem('kriado-intro','1');d.setAttribute('data-intro','on')}}catch(e){d.setAttribute('data-intro','off')}})();`;
