@@ -74,7 +74,7 @@
       "variable": "Preis variabel",
       "groupIntro": {
         "barberia": "Die Kriado-Karte. Buchbar bei Yeasy, mit genauem Tag und Uhrzeit.",
-        "peluqueria": "Für Damen und Herren. Buchung per WhatsApp: Vor jeder Farbe oder Typveränderung schauen wir uns dein Haar genau an."
+        "peluqueria": "Für Damen und Herren. Buchung per WhatsApp unter unserer Kontaktnummer. Vor jeder Leistung machen wir eine Haaranalyse, um die Schönheit deines Haares voll zur Geltung zu bringen."
       },
       "brands": "Im Salon findest du {brands}.",
       "onRequest": "Auf Anfrage",

@@ -74,7 +74,7 @@
       "variable": "Precio variable",
       "groupIntro": {
         "barberia": "La carta Kriado. Se reserva en Yeasy, con día y hora exactos.",
-        "peluqueria": "Para mujeres y hombres. Se reserva por WhatsApp: antes de un color o de un cambio de imagen, miramos cómo está tu pelo."
+        "peluqueria": "Para mujeres y hombres. Reservas por WhatsApp al teléfono de contacto. Antes de cualquier servicio hacemos un diagnóstico de tu cabello, para resaltar al máximo su belleza."
       },
       "brands": "En el salón encontrarás {brands}.",
       "onRequest": "A consultar",
