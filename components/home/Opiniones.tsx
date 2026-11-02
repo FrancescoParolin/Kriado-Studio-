@@ -42,6 +42,9 @@ export function Opiniones({ live }: { live: Live }) {
   const format = useFormatter();
   const { rating, reviews } = live;
   const [featured, ...others] = reviews;
+  // Gli estratti scritti a mano che sono già tra le recensioni arrivate da Google non si ripetono.
+  const norm = (text: string) => text.replace(/…/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  const extracts = highlights.filter((h) => !reviews.some((r) => norm(r.text).includes(norm(h.text))));
   const value = format.number(rating.value, {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
@@ -110,9 +113,13 @@ export function Opiniones({ live }: { live: Live }) {
           ))}
 
           {/* Livello 4: estratti messi in evidenza da Google (senza autore né voto visibili: niente stelle) */}
-          {highlights.length ? (
-            <ul className="mt-12 grid gap-x-[var(--gutter)] gap-y-8 border-t border-gris pt-10 sm:grid-cols-3 lg:mt-14 lg:pt-12">
-              {highlights.map((h, i) => (
+          {extracts.length ? (
+            <ul
+              className={`mt-12 grid gap-x-[var(--gutter)] gap-y-8 border-t border-gris pt-10 lg:mt-14 lg:pt-12 ${
+                extracts.length === 1 ? '' : extracts.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3'
+              }`}
+            >
+              {extracts.map((h, i) => (
                 <li key={i} data-reveal="up" style={{ '--d': i } as CSSProperties}>
                   <figure>
                     <blockquote lang={h.lang} className="leading-snug font-semibold text-blanco lg:text-[1.125rem]">

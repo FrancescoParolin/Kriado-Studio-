@@ -6,8 +6,8 @@ import { WEEK, type Day, type Horario } from './hours';
 
 /**
  * Orari, voto e recensioni presi dalla scheda Google (Places API New), aggiornati da soli ogni 6 ore.
- * Serve GOOGLE_PLACES_API_KEY nelle variabili d'ambiente (Netlify). Senza chiave, o se Google non risponde,
- * il sito usa i dati scritti in DATI e in content/reviews.ts: non si rompe mai niente.
+ * Serve GOOGLE_PLACES_API_KEY_KRIADO nelle variabili d'ambiente di Netlify (non segreta: le build partono dalla CLI).
+ * Senza chiave, o se Google non risponde, il sito usa i dati scritti in DATI e in content/reviews.ts: non si rompe niente.
  * La chiave resta sul server: questo file non va mai importato da un componente client.
  */
 
@@ -90,37 +90,37 @@ export function horarioFromPeriods(periods: GooglePeriod[] | undefined): Horario
   return WEEK.some((d) => out[d].length) ? out : null;
 }
 
-/** "María Magdalena Hernández" → "María Magdalena H.": nome e iniziale, come nelle recensioni scritte a mano. */
+const capitalize = (w: string) => w.charAt(0).toLocaleUpperCase('es') + w.slice(1);
+
+/** "maría magdalena hidalgo sánchez" → "María S.": nome e iniziale del cognome, con la maiuscola. */
 export function shortName(name: string) {
   const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length < 2) return parts[0] ?? '';
-  const last = parts.pop()!;
-  return `${parts.join(' ')} ${last.charAt(0).toUpperCase()}.`;
+  if (!parts.length) return '';
+  const first = capitalize(parts[0]!);
+  return parts.length < 2 ? first : `${first} ${parts[parts.length - 1]!.charAt(0).toLocaleUpperCase('es')}.`;
 }
 
-/** Al massimo 25 parole: le recensioni lunghe diventano un estratto fedele con "…", come quelle scritte a mano. */
-export function excerpt(text: string, words = 25) {
-  const clean = text.replace(/\s+/g, ' ').trim();
-  const list = clean.split(' ');
-  if (list.length <= words) return clean;
-  return `${list
-    .slice(0, words)
-    .join(' ')
-    .replace(/[,;:.!?…-]+$/, '')}…`;
-}
+/** Recensioni da mostrare intere: mai tagliate, perché un taglio fuori contesto può suonare negativo. */
+const MAX_WORDS = 40;
+const wordCount = (text: string) => text.split(' ').length;
 
-/** Tra le (al massimo 5) recensioni che manda Google: solo quelle da 5 stelle con testo, al massimo 3. */
+/**
+ * Tra le (al massimo 5) recensioni che manda Google: solo da 5 stelle, con testo intero entro 40 parole,
+ * la più breve per prima (va in grande), al massimo 3.
+ */
 function pickReviews(list: GoogleReview[] | undefined): LiveReview[] {
   return (list ?? [])
-    .filter((r) => r.rating === 5 && (r.originalText?.text ?? r.text?.text)?.trim() && r.authorAttribution?.displayName)
-    .slice(0, 3)
+    .filter((r) => r.rating === 5 && r.authorAttribution?.displayName)
     .map((r) => ({
-      text: excerpt((r.originalText?.text ?? r.text?.text)!),
+      text: (r.originalText?.text ?? r.text?.text ?? '').replace(/\s+/g, ' ').trim(),
       lang: (r.originalText?.languageCode ?? r.text?.languageCode ?? 'es').slice(0, 2),
       author: shortName(r.authorAttribution!.displayName!),
       stars: 5,
       url: r.googleMapsUri ?? r.authorAttribution?.uri,
-    }));
+    }))
+    .filter((r) => r.text && wordCount(r.text) <= MAX_WORDS)
+    .sort((a, b) => wordCount(a.text) - wordCount(b.text))
+    .slice(0, 3);
 }
 
 async function placeId(key: string): Promise<string | null> {
@@ -135,13 +135,18 @@ async function placeId(key: string): Promise<string | null> {
     }),
     next: { revalidate: 30 * 24 * 60 * 60 },
   });
-  if (!res.ok) throw new Error(`Google searchText ${res.status}`);
+  if (!res.ok) throw new Error(`Google searchText ${res.status}: ${(await res.text()).slice(0, 300)}`);
   const data = (await res.json()) as { places?: Array<{ id?: string }> };
   return data.places?.[0]?.id ?? null;
 }
 
 async function load(): Promise<Live> {
-  const key = process.env.GOOGLE_PLACES_API_KEY;
+  // GOOGLE_PLACES_API_KEY_KRIADO (non segreta, così arriva anche alle build dalla CLI) prima del vecchio nome.
+  // Una variabile segreta di Netlify arriva alla CLI mascherata ("****…"): in quel caso si ignora.
+  // trim: uno spazio o un a capo copiato insieme alla chiave la renderebbe "non valida" per Google.
+  const key = [process.env.GOOGLE_PLACES_API_KEY_KRIADO, process.env.GOOGLE_PLACES_API_KEY]
+    .map((k) => k?.trim())
+    .find((k) => k && !k.startsWith('*'));
   if (!key) return STATIC;
   try {
     const id = await placeId(key);
@@ -153,7 +158,7 @@ async function load(): Promise<Live> {
       },
       next: { revalidate: REVALIDATE },
     });
-    if (!res.ok) throw new Error(`Google place details ${res.status}`);
+    if (!res.ok) throw new Error(`Google place details ${res.status}: ${(await res.text()).slice(0, 300)}`);
     const place = (await res.json()) as GooglePlace;
 
     // Controllo che sia proprio la scheda di Kriado (stesso cid del link in DATI): una ricerca sbagliata non deve mostrare dati di altri.
@@ -178,7 +183,11 @@ async function load(): Promise<Live> {
       reviews: reviews.length ? reviews : STATIC.reviews,
     };
   } catch (error) {
-    console.error('[google] uso i dati scritti a mano:', error);
+    // Forma della chiave (mai il valore): le chiavi Google iniziano con "AIza" e sono lunghe 39 caratteri.
+    console.error(
+      `[google] uso i dati scritti a mano (chiave: ${key.length} caratteri, inizia con AIza: ${key.startsWith('AIza')}):`,
+      error,
+    );
     return STATIC;
   }
 }
