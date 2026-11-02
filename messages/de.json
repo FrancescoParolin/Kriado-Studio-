@@ -105,6 +105,7 @@
       "readAll": "Alle {count} Bewertungen bei Google lesen",
       "outOf": "von 5 bei Google",
       "breakdown": "{count} Bewertungen, davon {five} mit fünf Sternen",
+      "breakdownCount": "{count} Bewertungen",
       "inviteTitle": "Schon bei uns gewesen?",
       "inviteText": "Erzähl es auf Google: Deine Bewertung hilft allen, die in Cala Ratjada einen Friseur suchen.",
       "inviteButton": "Bewertung auf Google schreiben",

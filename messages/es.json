@@ -105,6 +105,7 @@
       "readAll": "Leer las {count} reseñas en Google",
       "outOf": "de 5 en Google",
       "breakdown": "{count} reseñas, {five} con cinco estrellas",
+      "breakdownCount": "{count} reseñas",
       "inviteTitle": "¿Ya has venido?",
       "inviteText": "Cuéntalo en Google: tu reseña ayuda a quien busca peluquería en Cala Ratjada.",
       "inviteButton": "Dejar una reseña en Google",

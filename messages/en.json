@@ -105,6 +105,7 @@
       "readAll": "Read all {count} reviews on Google",
       "outOf": "out of 5 on Google",
       "breakdown": "{count} reviews, {five} of them five stars",
+      "breakdownCount": "{count} reviews",
       "inviteTitle": "Been to Kriado?",
       "inviteText": "Tell others on Google: your review helps people looking for a hairdresser in Cala Ratjada.",
       "inviteButton": "Leave a review on Google",

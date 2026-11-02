@@ -2,21 +2,24 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { openState, type OpenState } from '@/lib/hours';
+import { openState, type Horario, type OpenState } from '@/lib/hours';
 
-/** "Abierto ahora, cierra a las 19:00" dagli orari veri, aggiornato ogni minuto. Sul server non si sa l'ora: si riserva solo lo spazio. */
-export function OpenStatus({ className = '' }: { className?: string }) {
+/**
+ * "Abierto ahora, cierra a las 19:00" dagli orari veri, aggiornato ogni minuto. Sul server non si sa l'ora: si riserva solo lo spazio.
+ * horario: i prossimi 7 giorni dalla scheda Google, con chiusure e orari speciali (lib/google.ts); senza, quelli di DATI.
+ */
+export function OpenStatus({ className = '', horario }: { className?: string; horario?: Horario }) {
   const t = useTranslations('status');
   const tl = useTranslations('location');
   const locale = useLocale();
   const [state, setState] = useState<OpenState | null>(null);
 
   useEffect(() => {
-    const update = () => setState(openState());
+    const update = () => setState(openState(new Date(), horario));
     update();
     const id = window.setInterval(update, 60_000);
     return () => window.clearInterval(id);
-  }, []);
+  }, [horario]);
 
   if (!state) return <p className={`ui min-h-[1.2em] ${className}`} aria-hidden="true" />;
 

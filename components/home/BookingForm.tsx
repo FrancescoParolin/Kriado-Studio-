@@ -4,7 +4,7 @@ import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { buttonClass } from '@/components/Button';
 import { useChosenService } from '@/lib/booking';
-import { madridNow, nextOpenDays, TIMEZONE } from '@/lib/hours';
+import { madridNow, nextOpenDays, TIMEZONE, type Horario } from '@/lib/hours';
 
 export type ServiceOption = { id: string; label: string; group: string };
 
@@ -37,11 +37,16 @@ export function BookingForm({
   groups,
   whatsapp,
   directMessage,
+  horario,
+  semana,
 }: {
   options: ServiceOption[];
   groups: Record<string, string>;
   whatsapp: string;
   directMessage: string;
+  /** Orario normale e prossimi 7 giorni dalla scheda Google (lib/google.ts); senza, quelli di DATI. */
+  horario?: Horario;
+  semana?: Horario;
 }) {
   const t = useTranslations('booking');
   const tc = useTranslations('cta');
@@ -73,19 +78,22 @@ export function BookingForm({
     });
     setNowMinutes(madridNow().minutes);
     setDays(
-      nextOpenDays(14).map(({ date, offset }) => {
-        let label = long.format(date);
-        if (locale === 'es') label = label.replace(',', '');
-        const inline = offset === 0 ? `${t('today')}, ${label}` : offset === 1 ? `${t('tomorrow')}, ${label}` : label;
-        return {
-          value: date.toISOString().slice(0, 10),
-          label,
-          inline,
-          today: offset === 0,
-        };
-      }),
+      nextOpenDays(14, new Date(), horario)
+        // Nei prossimi 7 giorni valgono le chiusure speciali messe su Google (festivi, ferie).
+        .filter(({ day, offset }) => offset >= 7 || !semana || semana[day].length > 0)
+        .map(({ date, offset }) => {
+          let label = long.format(date);
+          if (locale === 'es') label = label.replace(',', '');
+          const inline = offset === 0 ? `${t('today')}, ${label}` : offset === 1 ? `${t('tomorrow')}, ${label}` : label;
+          return {
+            value: date.toISOString().slice(0, 10),
+            label,
+            inline,
+            today: offset === 0,
+          };
+        }),
     );
-  }, [locale, t]);
+  }, [locale, t, horario, semana]);
 
   const isToday = days.find((d) => d.value === day)?.today ?? false;
   const slotOver = (ends: number) => isToday && nowMinutes !== null && nowMinutes >= ends - 30;

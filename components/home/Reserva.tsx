@@ -4,13 +4,14 @@ import { Section } from '@/components/Section';
 import { DATI } from '@/content/dati';
 import { serviceGroups, services } from '@/content/services';
 import type { Locale } from '@/i18n/routing';
+import type { Live } from '@/lib/google';
 import { links } from '@/lib/site';
 import { BookingForm } from './BookingForm';
 import { Words } from '@/components/motion/Words';
 import type { CSSProperties } from 'react';
 
 /** La sezione che fa prenotare: Yeasy con orario esatto, telefono, oppure un messaggio WhatsApp già pronto. */
-export function Reserva() {
+export function Reserva({ live }: { live: Live }) {
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const options = services.map((s) => ({
@@ -63,6 +64,8 @@ export function Reserva() {
             groups={groups}
             whatsapp={DATI.whatsapp}
             directMessage={links.whatsapp(t('whatsapp.booking'))}
+            horario={live.horario}
+            semana={live.semana}
           />
         </div>
       </div>

@@ -2,8 +2,9 @@ import { useFormatter, useTranslations } from 'next-intl';
 import { ButtonLink, ExternalLink } from '@/components/Button';
 import { Section } from '@/components/Section';
 import { Stars } from '@/components/Stars';
-import { highlights, rating, reviews } from '@/content/reviews';
+import { highlights } from '@/content/reviews';
 import type { Locale } from '@/i18n/routing';
+import type { Live, LiveReview } from '@/lib/google';
 import { links } from '@/lib/site';
 import { Words } from '@/components/motion/Words';
 import { CountUp } from '@/components/motion/CountUp';
@@ -15,8 +16,9 @@ const QUOTES: Record<Locale, [string, string]> = {
   de: ['„', '“'],
 };
 
-function quoted(text: string, lang: Locale) {
-  const [open, close] = QUOTES[lang];
+/** Virgolette della lingua della recensione (una recensione Google può essere in italiano, francese…: allora quelle inglesi). */
+function quoted(text: string, lang: string) {
+  const [open, close] = QUOTES[lang as Locale] ?? QUOTES.en;
   return `${open}${text}${close}`;
 }
 
@@ -25,9 +27,20 @@ function quoted(text: string, lang: Locale) {
  * Livelli: il voto con le stelle, una recensione in evidenza in grande, l'altra più piccola, gli estratti di Google.
  * Le stelle sulle singole recensioni ci sono solo dove il voto è stato letto su Google.
  */
-export function Opiniones() {
+/** Nome dell'autore: con il link alla recensione su Google quando arriva dalla scheda (attribuzione chiesta da Google). */
+function Author({ review }: { review: LiveReview }) {
+  if (!review.url) return <span className="font-semibold text-blanco">{review.author}</span>;
+  return (
+    <ExternalLink href={review.url} className="font-semibold text-blanco">
+      {review.author}
+    </ExternalLink>
+  );
+}
+
+export function Opiniones({ live }: { live: Live }) {
   const t = useTranslations();
   const format = useFormatter();
+  const { rating, reviews } = live;
   const [featured, ...others] = reviews;
   const value = format.number(rating.value, {
     minimumFractionDigits: 1,
@@ -49,10 +62,9 @@ export function Opiniones() {
             <span className="lead lg:mt-4 lg:block">{t('home.reviews.outOf')}</span>
           </p>
           <p className="mt-4">
-            {t('home.reviews.breakdown', {
-              count: rating.count,
-              five: rating.fiveStars,
-            })}
+            {rating.fiveStars === null
+              ? t('home.reviews.breakdownCount', { count: rating.count })
+              : t('home.reviews.breakdown', { count: rating.count, five: rating.fiveStars })}
           </p>
           <p className="ui mt-6">
             <ExternalLink href={links.google} className="inline-flex min-h-12 items-center">
@@ -74,7 +86,7 @@ export function Opiniones() {
                 </p>
               </blockquote>
               <figcaption className="mt-4">
-                <span className="font-semibold text-blanco">{featured.author}</span>
+                <Author review={featured} />
                 <span>, {t('home.reviews.source')}</span>
               </figcaption>
             </figure>
@@ -91,7 +103,7 @@ export function Opiniones() {
                 <p>{quoted(r.text, r.lang)}</p>
               </blockquote>
               <figcaption className="mt-4">
-                <span className="font-semibold text-blanco">{r.author}</span>
+                <Author review={r} />
                 <span>, {t('home.reviews.source')}</span>
               </figcaption>
             </figure>

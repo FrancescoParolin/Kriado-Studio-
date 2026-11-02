@@ -5,6 +5,7 @@ import { directionsUrl, mainLocation } from '@/content/locations';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
 import { bookingHref } from '@/lib/booking-href';
+import type { Horario } from '@/lib/hours';
 import { useHoursSummary } from '@/lib/use-hours-summary';
 import { links, site } from '@/lib/site';
 import { ButtonLink, ExternalLink } from './Button';
@@ -24,11 +25,11 @@ function Column({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-export function Footer() {
+export function Footer({ horario }: { horario?: Horario }) {
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const { address } = mainLocation;
-  const hours = useHoursSummary();
+  const hours = useHoursSummary(horario);
   return (
     <footer data-tone="dark" className="band bg-negro text-hueso">
       <div className="wrap">

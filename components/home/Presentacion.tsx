@@ -5,20 +5,21 @@ import { Words } from '@/components/motion/Words';
 import { OpenStatus } from '@/components/OpenStatus';
 import { Pending, Section } from '@/components/Section';
 import { Stars } from '@/components/Stars';
-import { rating } from '@/content/reviews';
 import type { Locale } from '@/i18n/routing';
 import { bookingHref } from '@/lib/booking-href';
+import type { Live } from '@/lib/google';
 import { useHoursSummary } from '@/lib/use-hours-summary';
 
 /**
  * Apertura dopo l'hero: la frase della casa in grande e centrata (seconda metà in contorno),
  * poi il testo e tre dati vivi (stelle, aperto adesso, Kriado Private).
  */
-export function Presentacion() {
+export function Presentacion({ live }: { live: Live }) {
+  const { rating } = live;
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const format = useFormatter();
-  const hours = useHoursSummary();
+  const hours = useHoursSummary(live.horario);
   const value = format.number(rating.value, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   return (
@@ -69,7 +70,7 @@ export function Presentacion() {
           <div data-reveal="up" style={{ '--d': 1 } as CSSProperties} className="grid gap-2 py-5">
             <dt className="sr-only">{t('location.hours')}</dt>
             <dd>
-              <OpenStatus className="text-[1.375rem] lg:text-[1.75rem]" />
+              <OpenStatus className="text-[1.375rem] lg:text-[1.75rem]" horario={live.semana} />
             </dd>
             <dd className="text-gris">{t('home.intro.hoursFact', hours)}</dd>
           </div>

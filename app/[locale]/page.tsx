@@ -16,6 +16,7 @@ import { SedeInfo } from '@/components/sede/SedeInfo';
 import { mainLocation } from '@/content/locations';
 import { products } from '@/content/products';
 import { routing } from '@/i18n/routing';
+import { getLive, withLiveHours } from '@/lib/google';
 import { absoluteUrl, pageMetadata } from '@/lib/metadata';
 import { Ribbon } from '@/components/motion/Ribbon';
 
@@ -39,22 +40,30 @@ export default async function HomePage({ params }: Props) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations();
+  // Orari, voto e recensioni dalla scheda Google (ogni 6 ore); senza chiave, quelli scritti in DATI.
+  const live = await getLive();
+  const location = await withLiveHours(mainLocation);
 
   return (
     <>
-      <BarberShopJsonLd location={mainLocation} url={absoluteUrl(locale, '/')} locale={locale} />
-      <RecorridoSection location={mainLocation} locale={locale} intro={<HomeIntro />} label={t('recorrido.label')} />
-      <Presentacion />
+      <BarberShopJsonLd location={location} url={absoluteUrl(locale, '/')} locale={locale} />
+      <RecorridoSection
+        location={mainLocation}
+        locale={locale}
+        intro={<HomeIntro live={live} />}
+        label={t('recorrido.label')}
+      />
+      <Presentacion live={live} />
       <Servicios />
-      <Reserva />
+      <Reserva live={live} />
       {/* Prodotti rimandati: la sezione torna da sola appena c'è un prodotto senza `pending`. */}
       {products.some((p) => !p.pending) ? <Productos /> : null}
       {/* Nastro di parole che scorre di lato con lo scroll: passaggio dal bianco della prenotazione al nero della galleria. */}
       <Ribbon items={t.raw('home.ribbon') as string[]} />
       <GaleriaPreview />
       <Carlos />
-      <Opiniones />
-      <SedeInfo location={mainLocation} title={t('home.location.title')} headingId="donde-titulo" showLocationLink />
+      <Opiniones live={live} />
+      <SedeInfo location={location} title={t('home.location.title')} headingId="donde-titulo" showLocationLink />
     </>
   );
 }

@@ -1,14 +1,8 @@
+import type { Horario } from '@/lib/hours';
 import { DATI } from './dati';
 import type { L10n, PendingNote } from './types';
 
-export type Weekday =
-  | 'monday'
-  | 'tuesday'
-  | 'wednesday'
-  | 'thursday'
-  | 'friday'
-  | 'saturday'
-  | 'sunday';
+export type Weekday = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
 
 export type DayHours =
   | { day: Weekday; closed: true }
@@ -57,10 +51,12 @@ export type Location = {
 
 const WEEK: Weekday[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-/** Orari presi da DATI: un giorno senza fasce è chiuso. */
-const hoursFromDati: DayHours[] = WEEK.map((day) =>
-  DATI.horario[day].length ? { day, ranges: [...DATI.horario[day]] } : { day, closed: true as const },
-);
+/** Orari per la tabella e i dati per Google: un giorno senza fasce è chiuso. */
+export function hoursFromHorario(horario: Horario): DayHours[] {
+  return WEEK.map((day) => (horario[day].length ? { day, ranges: [...horario[day]] } : { day, closed: true as const }));
+}
+
+const hoursFromDati: DayHours[] = hoursFromHorario(DATI.horario);
 
 export const locations: Location[] = [
   {

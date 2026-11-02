@@ -1,6 +1,8 @@
 import { DATI } from '@/content/dati';
 
 export type Day = keyof typeof DATI.horario;
+/** Fasce orarie per giorno. Di default quelle scritte in DATI; con la chiave Google arrivano dalla scheda (lib/google.ts). */
+export type Horario = Record<Day, ReadonlyArray<{ opens: string; closes: string }>>;
 export const WEEK: Day[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 const TZ = 'Europe/Madrid';
@@ -27,28 +29,32 @@ export type OpenState =
   | { open: false; nextDay: Day; inDays: number; opens: string }
   | { open: false; nextDay?: undefined };
 
-/** Aperto adesso? Se no, quando riapre. Calcolato dagli orari in DATI. */
-export function openState(date = new Date()): OpenState {
+/** Aperto adesso? Se no, quando riapre. */
+export function openState(date = new Date(), horario: Horario = DATI.horario): OpenState {
   const { day, minutes } = madridNow(date);
-  const current = DATI.horario[day].find((r) => minutes >= toMinutes(r.opens) && minutes < toMinutes(r.closes));
+  const current = horario[day].find((r) => minutes >= toMinutes(r.opens) && minutes < toMinutes(r.closes));
   if (current) return { open: true, closes: current.closes };
   const start = WEEK.indexOf(day);
   for (let i = 0; i < 7; i++) {
     const d = WEEK[(start + i) % 7]!;
-    const next = DATI.horario[d].find((r) => i > 0 || toMinutes(r.opens) > minutes);
+    const next = horario[d].find((r) => i > 0 || toMinutes(r.opens) > minutes);
     if (next) return { open: false, nextDay: d, inDays: i, opens: next.opens };
   }
   return { open: false };
 }
 
 /** Prossimi giorni in cui si può prenotare (oggi solo se manca almeno un'ora alla chiusura). */
-export function nextOpenDays(count: number, date = new Date()): Array<{ date: Date; day: Day; offset: number }> {
+export function nextOpenDays(
+  count: number,
+  date = new Date(),
+  horario: Horario = DATI.horario,
+): Array<{ date: Date; day: Day; offset: number }> {
   const out: Array<{ date: Date; day: Day; offset: number }> = [];
   const { minutes } = madridNow(date);
   for (let offset = 0; out.length < count && offset < 31; offset++) {
     const d = new Date(date.getTime() + offset * 24 * 60 * 60 * 1000);
     const { day } = madridNow(d);
-    const ranges = DATI.horario[day];
+    const ranges = horario[day];
     if (!ranges.length) continue;
     if (offset === 0) {
       const last = Math.max(...ranges.map((r) => toMinutes(r.closes)));
@@ -62,10 +68,10 @@ export function nextOpenDays(count: number, date = new Date()): Array<{ date: Da
 export const TIMEZONE = TZ;
 
 /** Giorni consecutivi con lo stesso orario, per i riassunti ("Lunes a sábado, 10:00–19:00"). I giorni chiusi restano fuori. */
-export function hoursGroups(): Array<{ from: Day; to: Day; time: string }> {
+export function hoursGroups(horario: Horario = DATI.horario): Array<{ from: Day; to: Day; time: string }> {
   const groups: Array<{ from: Day; to: Day; time: string }> = [];
   for (const day of WEEK) {
-    const ranges = DATI.horario[day];
+    const ranges = horario[day];
     if (!ranges.length) continue;
     const time = ranges.map((r) => `${r.opens}–${r.closes}`).join(', ');
     const last = groups[groups.length - 1];

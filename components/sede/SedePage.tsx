@@ -6,13 +6,16 @@ import { Section } from '@/components/Section';
 import type { Location } from '@/content/locations';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
+import { withLiveHours } from '@/lib/google';
 import { resolveImage } from '@/lib/images';
 import { SedeInfo } from './SedeInfo';
 import { SedeIntro } from './SedeIntro';
 
 /** La pagina di una sede: recorrido, dati pratici, mini galleria del locale. */
-export async function SedePage({ location, locale, url }: { location: Location; locale: Locale; url: string }) {
+export async function SedePage({ location: base, locale, url }: { location: Location; locale: Locale; url: string }) {
   const t = await getTranslations({ locale });
+  // Orari dalla scheda Google quando c'è la chiave (lib/google.ts).
+  const location = await withLiveHours(base);
   return (
     <>
       <BarberShopJsonLd location={location} url={url} locale={locale} />

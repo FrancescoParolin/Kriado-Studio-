@@ -7,6 +7,7 @@ import { ButtonLink, ExternalLink } from '@/components/Button';
 import { ContactForm } from '@/components/contacto/ContactForm';
 import { HoursTable } from '@/components/sede/HoursTable';
 import { mainLocation } from '@/content/locations';
+import { withLiveHours } from '@/lib/google';
 import { routing } from '@/i18n/routing';
 import { pageMetadata } from '@/lib/metadata';
 import { bookingHref } from '@/lib/booking-href';
@@ -33,7 +34,7 @@ export default async function ContactoPage({ params }: Props) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations({ locale });
-  const loc = mainLocation;
+  const loc = await withLiveHours(mainLocation);
 
   return (
     <section
@@ -77,7 +78,10 @@ export default async function ContactoPage({ params }: Props) {
                 <>
                   <dt>{t('contact.email')}</dt>
                   <dd>
-                    <a href={`mailto:${DATI.email}`} className="link ui inline-flex min-h-12 min-w-0 items-center [overflow-wrap:anywhere]">
+                    <a
+                      href={`mailto:${DATI.email}`}
+                      className="link ui inline-flex min-h-12 min-w-0 items-center [overflow-wrap:anywhere]"
+                    >
                       {DATI.email}
                     </a>
                   </dd>

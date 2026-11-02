@@ -9,6 +9,7 @@ import { Header } from '@/components/Header';
 import { MobileBar } from '@/components/MobileBar';
 import { Intro, introScript } from '@/components/motion/Intro';
 import { MotionObserver } from '@/components/motion/MotionObserver';
+import { getLive } from '@/lib/google';
 import { routing } from '@/i18n/routing';
 import { site } from '@/lib/site';
 import '../globals.css';
@@ -62,6 +63,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   // Solo i namespace usati dai componenti client: il resto resta sul server.
   const all = await getMessages();
   const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.filter((ns) => ns in all).map((ns) => [ns, all[ns]]));
+  // Orari del footer dalla scheda Google (lib/google.ts).
+  const live = await getLive();
 
   return (
     // suppressHydrationWarning: lo script in <head> aggiunge data-intro prima di React.
@@ -77,7 +80,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <main id="contenido" tabIndex={-1} className="outline-none">
             {children}
           </main>
-          <Footer />
+          <Footer horario={live.horario} />
           <MobileBar />
         </NextIntlClientProvider>
       </body>

@@ -2,7 +2,7 @@ import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { ButtonLink } from '@/components/Button';
 import { OpenStatus } from '@/components/OpenStatus';
 import { DATI } from '@/content/dati';
-import { rating } from '@/content/reviews';
+import type { Live } from '@/lib/google';
 import type { Locale } from '@/i18n/routing';
 import { bookingHref } from '@/lib/booking-href';
 import { links } from '@/lib/site';
@@ -13,7 +13,8 @@ import type { CSSProperties } from 'react';
  * Primo fotogramma della home, sul nero accanto (desktop) o sotto (mobile) alla facciata:
  * nome, cosa fa e dove, aperto adesso o no, e le due azioni.
  */
-export function HomeIntro() {
+export function HomeIntro({ live }: { live: Live }) {
+  const { rating } = live;
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const format = useFormatter();
@@ -31,7 +32,7 @@ export function HomeIntro() {
         {t('home.hero.lede')}
       </p>
       <div data-reveal="up" style={{ '--d': 3 } as CSSProperties} className="mt-4 flex flex-col gap-2 lg:mt-6">
-        <OpenStatus className="text-blanco" />
+        <OpenStatus className="text-blanco" horario={live.semana} />
         <p className="ui">
           {t.rich('home.hero.rating', {
             rating: value,
