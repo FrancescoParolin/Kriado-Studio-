@@ -281,7 +281,7 @@ export const legal: Record<LegalKey, Record<Locale, LegalDoc>> = {
         {
           heading: 'La única cookie',
           paragraphs: [
-            'NEXT_LOCALE guarda el idioma que eliges cuando cambias de idioma con el selector. Es una cookie técnica y propia, y se borra al cerrar el navegador. Si no cambias de idioma, no se crea.',
+            'NEXT_LOCALE guarda el idioma de la página que estás viendo (español, inglés o alemán), para mostrarte las siguientes en el mismo idioma. Es una cookie técnica y propia, no contiene datos personales y se borra al cerrar el navegador.',
           ],
         },
         {
@@ -309,7 +309,7 @@ export const legal: Record<LegalKey, Record<Locale, LegalDoc>> = {
         {
           heading: 'The only cookie',
           paragraphs: [
-            'NEXT_LOCALE remembers the language you pick when you switch language with the selector. It’s a first-party technical cookie and it’s deleted when you close your browser. If you never switch language, it isn’t created.',
+            'NEXT_LOCALE remembers the language of the page you’re viewing (Spanish, English or German), so the next pages open in the same language. It’s a first-party technical cookie, holds no personal data and is deleted when you close your browser.',
           ],
         },
         {
@@ -337,7 +337,7 @@ export const legal: Record<LegalKey, Record<Locale, LegalDoc>> = {
         {
           heading: 'Das einzige Cookie',
           paragraphs: [
-            'NEXT_LOCALE merkt sich die Sprache, die du über die Sprachauswahl wählst. Es ist ein technisches Cookie dieser Website und wird beim Schließen des Browsers gelöscht. Wenn du die Sprache nie wechselst, wird es gar nicht erst gesetzt.',
+            'NEXT_LOCALE merkt sich die Sprache der Seite, die du gerade ansiehst (Spanisch, Englisch oder Deutsch), damit die nächsten Seiten in derselben Sprache öffnen. Es ist ein technisches Cookie dieser Website, enthält keine personenbezogenen Daten und wird beim Schließen des Browsers gelöscht.',
           ],
         },
         {
