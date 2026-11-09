@@ -226,7 +226,6 @@
     "lead": "Kriado Studio ist Friseur und Barbershop in Cala Ratjada, 2026 von Carlos Kriado gegründet. Hierher kommen Damen und Herren jeden Alters.",
     "story": "[DA_CLIENTE: Carlos' Geschichte, 150–200 Wörter: wie er angefangen hat, seit wann er Haare schneidet, warum Cala Ratjada]",
     "teamTitle": "Das Team",
-    "teamPending": "[DA_CLIENTE: Team: Carlos, Pau (Stylist, in den Bewertungen erwähnt) und alle anderen im Salon, mit Aufgabe und Foto]",
     "howTitle": "So arbeiten wir",
     "how1": "Wir arbeiten mit Termin: Wähle Tag und Uhrzeit bei Yeasy oder schreib uns per WhatsApp.",
     "how2": "Jede Leistung hat ihre eigene Zeit, von 15 Minuten bis zu anderthalb Stunden: Du siehst sie in der Karte, bevor du buchst.",
@@ -260,13 +259,27 @@
       }
     ],
     "team": {
-      "carlosRole": "Gründer und Barbier",
-      "carlosText": "Seit 2020 im Barbershop, seit 2022 als Profi. 2026 gründet er Kriado Studio.",
-      "pauRole": "Styling",
-      "pauText": "Schnitt, Farbe und Frisuren im Salon.",
       "reviewSource": "Bewertung auf Google",
-      "carlosAlt": "Carlos Kriado bei einem Barbier-Ritual im Kriado Studio",
-      "pauAlt": "Pau im Kriado Studio, im Schaufenster das Logo"
+      "carlos": {
+        "role": "Gründer und Barbier",
+        "text": "Seit 2020 im Barbershop, seit 2022 als Profi. 2026 gründet er Kriado Studio: einen Salon, der sich für jeden Kunden Zeit nimmt.",
+        "alt": "Porträt von Carlos Kriado, Gründer von Kriado Studio, im Polo des Salons"
+      },
+      "arturo": {
+        "role": "Barbier und Stylist",
+        "text": "Bevor er zur Schere greift, schaut er hin und hört zu. Der Schnitt wird mit dir entschieden, passend zu Gesicht, Haar und Alltag.",
+        "alt": "Porträt von Arturo González, Barbier und Stylist im Kriado Studio"
+      },
+      "mayte": {
+        "role": "Kosmetikerin",
+        "text": "Kümmert sich im Salon um die Kosmetik. Ruhige, präzise Arbeit bis ins letzte Detail.",
+        "alt": "Porträt von Mayte Almada, Kosmetikerin im Kriado Studio"
+      },
+      "pau": {
+        "role": "Styling",
+        "text": "Schnitt, Farbe und Frisuren im Salon, für Frauen und Männer.",
+        "alt": "Porträt von Pau, Styling im Kriado Studio"
+      }
     },
     "private": {
       "title": "Kriado Private",

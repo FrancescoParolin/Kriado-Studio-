@@ -226,7 +226,6 @@
     "lead": "Kriado Studio es una peluquería y barbería en Cala Ratjada, fundada en 2026 por Carlos Kriado. Aquí vienen mujeres y hombres de todas las edades.",
     "story": "[DA_CLIENTE: historia de Carlos, 150–200 palabras: cómo empezó, desde cuándo corta, por qué Cala Ratjada]",
     "teamTitle": "El equipo",
-    "teamPending": "[DA_CLIENTE: equipo: Carlos, Pau (estilista, citado en las reseñas) y quien más trabaje en el salón, con puesto y foto]",
     "howTitle": "Cómo trabajamos",
     "how1": "Trabajamos con cita previa: eliges día y hora en Yeasy o nos escribes por WhatsApp.",
     "how2": "Cada servicio tiene su tiempo, de 15 minutos a hora y media: lo ves en la carta antes de reservar.",
@@ -260,13 +259,27 @@
       }
     ],
     "team": {
-      "carlosRole": "Fundador y barbero",
-      "carlosText": "En la barbería desde 2020 y profesional desde 2022. En 2026 funda Kriado Studio.",
-      "pauRole": "Estilista",
-      "pauText": "Corte, color y peinados en el salón.",
       "reviewSource": "Reseña en Google",
-      "carlosAlt": "Carlos Kriado durante un ritual de barbería en Kriado Studio",
-      "pauAlt": "Pau en Kriado Studio, con el logo en el escaparate"
+      "carlos": {
+        "role": "Fundador y barbero",
+        "text": "En la barbería desde 2020 y profesional desde 2022. En 2026 funda Kriado Studio: un salón con tiempo para cada cliente.",
+        "alt": "Retrato de Carlos Kriado, fundador de Kriado Studio, con el polo del salón"
+      },
+      "arturo": {
+        "role": "Barbero estilista",
+        "text": "Antes de coger las tijeras, mira y escucha. El corte se decide contigo, según tu cara, tu pelo y cómo lo llevas cada día.",
+        "alt": "Retrato de Arturo González, barbero estilista de Kriado Studio"
+      },
+      "mayte": {
+        "role": "Esteticista",
+        "text": "Se ocupa de la estética en el salón. Trabajo tranquilo y preciso, cuidado hasta el último detalle.",
+        "alt": "Retrato de Mayte Almada, esteticista de Kriado Studio"
+      },
+      "pau": {
+        "role": "Estilista",
+        "text": "Corte, color y peinados en el salón, para mujeres y hombres.",
+        "alt": "Retrato de Pau, estilista de Kriado Studio"
+      }
     },
     "private": {
       "title": "Kriado Private",

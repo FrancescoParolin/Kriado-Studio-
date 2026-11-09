@@ -21,8 +21,8 @@ export const DATI = {
   proximasAperturas: 3,
   /** Kriado Private: servizio esclusivo di barbería e peluquería solo in villas e hotel, tutta l'isola, 5–7 giorni di anticipo; per sportivi, imprenditori, clienti di alto profilo. Nessun nome nei testi (lo fanno Carlos e Pau). */
   private: { antelacionDias: [5, 7] as const },
-  /** Citato nelle recensioni Google come estilista. */
-  equipo: ['Carlos', 'Pau'],
+  /** Il team (9 novembre 2026); Pau è citato nelle recensioni Google come estilista. */
+  equipo: ['Carlos', 'Arturo', 'Mayte', 'Pau'],
 
   direccion: {
     calle: 'Carrer Leonor Servera 7', // confermato da Paro il 9 ottobre 2026 (su Yeasy c'è scritto 9: da correggere lì)

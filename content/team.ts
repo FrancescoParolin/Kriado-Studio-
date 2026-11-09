@@ -1,9 +1,11 @@
-import type { Img, L10n } from './types';
+import { DATI } from './dati';
+import type { Img } from './types';
 
 export type TeamMember = {
+  /** Testi in messages: about.team.<key>.role, .text, .alt */
+  key: 'carlos' | 'arturo' | 'mayte' | 'pau';
   name: string;
-  role: L10n;
-  image: Img;
+  image: Omit<Img, 'alt'>;
 };
 
 /** Foto grande di Carlos al lavoro per "Quiénes somos". [DA_CLIENTE] */
@@ -34,5 +36,14 @@ export const aboutFallbackPhoto: Omit<Img, 'alt'> = {
   height: 1067,
 };
 
-// [DA_CLIENTE] Il team, se c'è: nome, ruolo, foto. Finché è vuoto la pagina mostra un segnaposto.
-export const team: TeamMember[] = [];
+/**
+ * "El equipo" in "Quiénes somos", in quest'ordine (Paro, 9 novembre 2026): Carlos, Arturo (barbero estilista),
+ * Mayte (estética: i servizi di estetica non sono ancora nel listino), Pau.
+ * Ritratti sul muro bianco del salone, tagliati 4:5 con gli occhi alla stessa altezza.
+ */
+export const team: TeamMember[] = [
+  { key: 'carlos', name: DATI.titular, image: { src: '/images/equipo/equipo-carlos.jpg', width: 1080, height: 1350 } },
+  { key: 'arturo', name: 'Arturo González', image: { src: '/images/equipo/equipo-arturo.jpg', width: 1032, height: 1290 } },
+  { key: 'mayte', name: 'Mayte Almada', image: { src: '/images/equipo/equipo-mayte.jpg', width: 784, height: 980 } },
+  { key: 'pau', name: 'Pau', image: { src: '/images/equipo/equipo-pau.jpg', width: 1080, height: 1350 } },
+];

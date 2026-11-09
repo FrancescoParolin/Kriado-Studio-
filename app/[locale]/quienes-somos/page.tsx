@@ -8,7 +8,7 @@ import { Pending, Section } from '@/components/Section';
 import { mainLocation } from '@/content/locations';
 import { brands } from '@/content/services';
 import { gallery, type GalleryItem } from '@/content/gallery';
-import { aboutFallbackPhoto, carlosPhoto } from '@/content/team';
+import { aboutFallbackPhoto, carlosPhoto, team } from '@/content/team';
 import { DATI } from '@/content/dati';
 import { highlights } from '@/content/reviews';
 import type { CSSProperties } from 'react';
@@ -48,8 +48,8 @@ export default async function QuienesSomosPage({ params }: Props) {
   // Accanto a "Carlos Kriado, fundador.": Carlos durante il rituale con l'asciugamano caldo.
   const carlosAtWork = gallery.find((g) => g.src === '/images/galeria/trabajo-02.jpg') as GalleryItem;
   const photoA = { src: carlosAtWork.src, alt: carlosAtWork.alt[locale] };
-  // Recensione vera su Pau (estratto della scheda Google) per la scheda del team.
-  const pauReview = highlights.find((h) => h.text.startsWith('Pau'));
+  // Recensione vera che nomina qualcuno del team (estratto della scheda Google, oggi solo su Pau): va nella sua scheda.
+  const reviewAbout = (name: string) => highlights.find((h) => h.text.startsWith(`${name.split(' ')[0]} `));
 
   return (
     <>
@@ -170,55 +170,48 @@ export default async function QuienesSomosPage({ params }: Props) {
         </ul>
       </Section>
 
-      {/* Il team: Carlos e Pau (Pau è citato nelle recensioni). Senza foto di Pau: due schede di solo testo. */}
+      {/* Il team (content/team.ts): quattro ritratti in fila su computer, due per riga su tablet, uno sotto l'altro su telefono. */}
       <Section tone="light" labelledBy="team-title">
         <h2 id="team-title" data-reveal="words" className="display-l">
           <Words text={t('about.teamTitle')} />
         </h2>
-        <div className="grid-12 mt-10 gap-y-12 lg:mt-16">
-          <div className="col-span-12 md:col-span-6 lg:col-span-5">
-            <div data-reveal="img" className="soft relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
-              <Image
-                src={resolveImage('/images/equipo/carlos-retrato.jpg')}
-                fill
-                alt={t('about.team.carlosAlt')}
-                sizes="(min-width: 1440px) 540px, (min-width: 768px) 45vw, 100vw"
-                quality={70}
-                className="object-cover"
-              />
-            </div>
-            <div data-reveal="up" className="border-t border-negro pt-6">
-              <p className="quote">{DATI.titular}</p>
-              <p className="ui mt-3 text-gris">{t('about.team.carlosRole')}</p>
-              <p className="prose-airy mt-4">{t('about.team.carlosText')}</p>
-            </div>
-          </div>
-          <div className="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-7">
-            <div data-reveal="img" className="soft relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
-              <Image
-                src={resolveImage('/images/equipo/pau-equipo.jpg')}
-                fill
-                alt={t('about.team.pauAlt')}
-                sizes="(min-width: 1440px) 540px, (min-width: 768px) 45vw, 100vw"
-                quality={70}
-                className="object-cover"
-              />
-            </div>
-            <div data-reveal="up" style={{ '--d': 1 } as CSSProperties} className="border-t border-negro pt-6">
-              <p className="quote">Pau</p>
-              <p className="ui mt-3 text-gris">{t('about.team.pauRole')}</p>
-              <p className="prose-airy mt-4">{t('about.team.pauText')}</p>
-              {pauReview ? (
-                <figure className="mt-6 border-l-2 border-negro pl-4">
-                  <blockquote lang={pauReview.lang} className="font-semibold">
-                    <p>«{pauReview.text}»</p>
-                  </blockquote>
-                  <figcaption className="mt-2 text-gris">{t('about.team.reviewSource')}</figcaption>
-                </figure>
-              ) : null}
-            </div>
-          </div>
-        </div>
+        <ul className="grid-12 mt-10 gap-y-12 lg:mt-16">
+          {team.map((member, i) => {
+            const review = reviewAbout(member.name);
+            return (
+              <li key={member.key} className="col-span-12 sm:col-span-6 lg:col-span-3">
+                <div data-reveal="img" className="soft relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
+                  <Image
+                    src={resolveImage(member.image.src)}
+                    fill
+                    alt={t(`about.team.${member.key}.alt`)}
+                    sizes="(min-width: 1440px) 310px, (min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
+                    quality={70}
+                    className="object-cover"
+                  />
+                </div>
+                <div
+                  data-reveal="up"
+                  style={{ '--d': i % 4 } as CSSProperties}
+                  className="border-t border-negro pt-6"
+                >
+                  {/* Due righe riservate al nome: affiancati, ruoli e testi partono alla stessa altezza. */}
+                  <p className="quote sm:min-h-[2.1em]">{member.name}</p>
+                  <p className="ui mt-3 text-gris">{t(`about.team.${member.key}.role`)}</p>
+                  <p className="prose-airy mt-4">{t(`about.team.${member.key}.text`)}</p>
+                  {review ? (
+                    <figure className="mt-6 border-l-2 border-negro pl-4">
+                      <blockquote lang={review.lang} className="font-semibold">
+                        <p>«{review.text}»</p>
+                      </blockquote>
+                      <figcaption className="mt-2 text-gris">{t('about.team.reviewSource')}</figcaption>
+                    </figure>
+                  ) : null}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </Section>
 
       {/* Kriado Private: villas e hotel di tutta l'isola, 5–7 giorni di anticipo (Carlos). */}
