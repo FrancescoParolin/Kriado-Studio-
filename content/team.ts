@@ -39,11 +39,11 @@ export const aboutFallbackPhoto: Omit<Img, 'alt'> = {
 /**
  * "El equipo" in "Quiénes somos", in quest'ordine (Paro, 9 novembre 2026): Carlos, Arturo (barbero estilista),
  * Mayte (estética: i servizi di estetica non sono ancora nel listino), Pau.
- * Ritratti sul muro bianco del salone, tagliati 4:5 con gli occhi alla stessa altezza.
+ * Ritratti sul muro bianco del salone, in bianco e nero (luce uniforme tra quattro scatti diversi), 4:5, occhi alla stessa altezza.
  */
 export const team: TeamMember[] = [
-  { key: 'carlos', name: DATI.titular, image: { src: '/images/equipo/equipo-carlos.jpg', width: 1080, height: 1350 } },
-  { key: 'arturo', name: 'Arturo González', image: { src: '/images/equipo/equipo-arturo.jpg', width: 1032, height: 1290 } },
-  { key: 'mayte', name: 'Mayte Almada', image: { src: '/images/equipo/equipo-mayte.jpg', width: 784, height: 980 } },
-  { key: 'pau', name: 'Pau', image: { src: '/images/equipo/equipo-pau.jpg', width: 1080, height: 1350 } },
+  { key: 'carlos', name: DATI.titular, image: { src: '/images/equipo/retrato-carlos.jpg', width: 1080, height: 1350 } },
+  { key: 'arturo', name: 'Arturo González', image: { src: '/images/equipo/retrato-arturo.jpg', width: 1032, height: 1290 } },
+  { key: 'mayte', name: 'Mayte Almada', image: { src: '/images/equipo/retrato-mayte.jpg', width: 784, height: 980 } },
+  { key: 'pau', name: 'Pau', image: { src: '/images/equipo/retrato-pau.jpg', width: 1080, height: 1350 } },
 ];

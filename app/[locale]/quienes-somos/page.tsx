@@ -144,7 +144,8 @@ export default async function QuienesSomosPage({ params }: Props) {
               style={{ '--d': i } as CSSProperties}
               className="col-span-12 border-t border-gris pt-6 md:col-span-4"
             >
-              <p className="wordmark tabular text-[4.3125rem] leading-[0.85] text-oro md:text-[6.6875rem]">
+              {/* L'anno è largo circa 3em: 69px fino al tablet (colonna da 214px a 768), 86 da 1024, 107 da 1280. */}
+              <p className="wordmark tabular text-[4.3125rem] leading-[0.85] text-oro lg:text-[5.375rem] xl:text-[6.6875rem]">
                 {step.year}
               </p>
               <p className="prose-airy mt-4 text-blanco">{step.text}</p>
@@ -170,48 +171,65 @@ export default async function QuienesSomosPage({ params }: Props) {
         </ul>
       </Section>
 
-      {/* Il team (content/team.ts): quattro ritratti in fila su computer, due per riga su tablet, uno sotto l'altro su telefono. */}
+      {/* Il team (content/team.ts) in un pannello nero dentro la banda bianca: i ritratti in bianco e nero sul muro chiaro
+          risaltano come in una galleria (spunto: millimetrobarber.it, team su nero). Il pannello, e non una banda nera,
+          tiene l'alternanza della pagina tra le tappe e Kriado Private, che sono già su nero.
+          Computer: due colonne, la destra scende di 8rem come le foto sfalsate della storia. Tablet: due per riga.
+          Telefono: uno sotto l'altro. */}
       <Section tone="light" labelledBy="team-title">
-        <h2 id="team-title" data-reveal="words" className="display-l">
-          <Words text={t('about.teamTitle')} />
-        </h2>
-        <ul className="grid-12 mt-10 gap-y-12 lg:mt-16">
-          {team.map((member, i) => {
-            const review = reviewAbout(member.name);
-            return (
-              <li key={member.key} className="col-span-12 sm:col-span-6 lg:col-span-3">
-                <div data-reveal="img" className="soft relative mb-6 aspect-[4/5] overflow-hidden bg-hueso">
-                  <Image
-                    src={resolveImage(member.image.src)}
-                    fill
-                    alt={t(`about.team.${member.key}.alt`)}
-                    sizes="(min-width: 1440px) 310px, (min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
-                    quality={70}
-                    className="object-cover"
-                  />
-                </div>
-                <div
-                  data-reveal="up"
-                  style={{ '--d': i % 4 } as CSSProperties}
-                  className="border-t border-negro pt-6"
+        <div
+          data-tone="dark"
+          className="soft bg-negro px-5 py-12 text-hueso sm:px-8 sm:py-16 lg:px-16 lg:pt-20 lg:pb-52"
+        >
+          <div className="grid-12 gap-y-6 lg:items-end">
+            <h2 id="team-title" data-reveal="words" className="display-l col-span-12 text-blanco lg:col-span-6">
+              <Words text={t('about.teamTitle')} />
+            </h2>
+            <p data-reveal="up" className="lead col-span-12 lg:col-span-5 lg:col-start-8">
+              {t('about.teamLead')}
+            </p>
+          </div>
+          <ul className="grid-12 mt-12 gap-y-14 lg:mt-20 lg:gap-y-20">
+            {team.map((member, i) => {
+              const review = reviewAbout(member.name);
+              return (
+                <li
+                  key={member.key}
+                  className={`col-span-12 sm:col-span-6 lg:col-span-5 ${i % 2 ? 'lg:relative lg:top-32 lg:col-start-8' : ''}`}
                 >
-                  {/* Due righe riservate al nome: affiancati, ruoli e testi partono alla stessa altezza. */}
-                  <p className="quote sm:min-h-[2.1em]">{member.name}</p>
-                  <p className="ui mt-3 text-gris">{t(`about.team.${member.key}.role`)}</p>
-                  <p className="prose-airy mt-4">{t(`about.team.${member.key}.text`)}</p>
-                  {review ? (
-                    <figure className="mt-6 border-l-2 border-negro pl-4">
-                      <blockquote lang={review.lang} className="font-semibold">
-                        <p>«{review.text}»</p>
-                      </blockquote>
-                      <figcaption className="mt-2 text-gris">{t('about.team.reviewSource')}</figcaption>
-                    </figure>
-                  ) : null}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                  <div data-reveal="img" className="soft relative aspect-[4/5] overflow-hidden bg-gris">
+                    <Image
+                      src={resolveImage(member.image.src)}
+                      fill
+                      alt={t(`about.team.${member.key}.alt`)}
+                      sizes="(min-width: 1440px) 470px, (min-width: 1024px) 34vw, (min-width: 640px) 42vw, 90vw"
+                      quality={70}
+                      className="object-cover"
+                    />
+                  </div>
+                  <div
+                    data-reveal="up"
+                    style={{ '--d': i % 2 } as CSSProperties}
+                    className="mt-6 border-t border-gris pt-6"
+                  >
+                    {/* Su tablet due righe riservate al nome, così ruoli e testi affiancati partono alla stessa altezza. */}
+                    <h3 className="quote text-blanco sm:min-h-[2.1em] lg:min-h-0">{member.name}</h3>
+                    <p className="ui mt-3">{t(`about.team.${member.key}.role`)}</p>
+                    <p className="prose-airy mt-4">{t(`about.team.${member.key}.text`)}</p>
+                    {review ? (
+                      <figure className="mt-6 border-l-2 border-hueso pl-4">
+                        <blockquote lang={review.lang} className="font-semibold text-blanco">
+                          <p>«{review.text}»</p>
+                        </blockquote>
+                        <figcaption className="mt-2">{t('about.team.reviewSource')}</figcaption>
+                      </figure>
+                    ) : null}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </Section>
 
       {/* Kriado Private: villas e hotel di tutta l'isola, 5–7 giorni di anticipo (Carlos). */}
