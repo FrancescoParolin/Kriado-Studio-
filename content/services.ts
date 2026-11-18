@@ -1,16 +1,21 @@
 import type { L10n, PendingNote } from './types';
 
-export type ServiceGroup = 'peluqueria' | 'barberia';
+export type ServiceGroup = 'peluqueria' | 'barberia' | 'estetica';
+
+/** Sezioni dentro un gruppo, nell'ordine in cui si mostrano. Per ora le ha solo l'estetica. */
+export const serviceCategories = ['facial', 'depilacion', 'manos', 'masajes'] as const;
+export type ServiceCategory = (typeof serviceCategories)[number];
 
 export type Service = {
   /** Identificativo stabile: lo usano i bottoni "Reservar" del listino e il modulo di prenotazione. */
   id: string;
   group: ServiceGroup;
+  category?: ServiceCategory;
   name: L10n;
-  /** Una riga: cosa include, per chi. */
-  description: L10n;
-  /** Minuti, dal listino Yeasy. */
-  duration?: number;
+  /** Una riga: cosa include, per chi. Manca dove non sappiamo ancora cosa comprende (rituali). */
+  description?: L10n;
+  /** Minuti, dal listino Yeasy o dalla cassa del salone; due valori se il servizio esiste in due durate (25 e 50). */
+  duration?: number | number[];
   /** Euro, dal listino Yeasy; 'variable' se dipende dal servizio. Si mostra solo se SHOW_PRICES è true. */
   price?: number | 'variable';
   /** Tra i "servicios más populares" della pagina Yeasy. */
@@ -26,8 +31,8 @@ export const SHOW_PRICES = false;
 /** Marche con cui lavora il salone, da Carlos (9 ottobre 2026); "L'Oréal Professionnel" come sui flaconi in salone (foto dell'11 ottobre). Five Am (uomo) non si cita: Carlos la sostituirà con una di alta gamma. */
 export const brands = ['Kérastase', "L'Oréal Professionnel"];
 
-// Prima la barbería: ha prezzi e durate veri (Yeasy). La peluquería ha i prezzi da confermare.
-export const serviceGroups: ServiceGroup[] = ['barberia', 'peluqueria'];
+// Prima la barbería: ha prezzi e durate veri (Yeasy). La peluquería ha i prezzi da confermare. Poi l'estetica (Mayte).
+export const serviceGroups: ServiceGroup[] = ['barberia', 'peluqueria', 'estetica'];
 
 // Peluquería per donne e uomini, con barbería.
 // Barbería: listino ufficiale su Yeasy (yeasy.io/commerce/bb7948cd-…, letto l'8 ottobre 2026): nomi, durate e prezzi verificati.
@@ -198,6 +203,225 @@ export const services: Service[] = [
     },
     duration: 90,
     price: 'variable',
+  },
+
+  // ---------- Estética (Mayte) ----------
+  // Dalla cassa del salone (foto di Paro, 18 novembre 2026): nomi e durate. Descrizioni di facial e manicura/pedicura
+  // da Paro; massaggi descritti dal nome della tecnica; rituali senza descrizione finché Carlos non dice cosa includono.
+  // Depilación senza durate (in cassa non ci sono). Massaggi in rosso in cassa, rituali in rosa: qui prima gli uni, poi gli altri.
+  {
+    id: 'anti-ageing-facial',
+    group: 'estetica',
+    category: 'facial',
+    name: { es: 'Kriado Anti-Ageing Facial Luxury', en: 'Kriado Anti-Ageing Facial Luxury', de: 'Kriado Anti-Ageing Facial Luxury' },
+    description: {
+      es: 'Tratamiento facial antiedad y antiarrugas.',
+      en: 'Anti-ageing, anti-wrinkle facial.',
+      de: 'Anti-Aging-Gesichtsbehandlung gegen Falten.',
+    },
+    duration: 55,
+  },
+  {
+    id: 'deep-facial-cleansing',
+    group: 'estetica',
+    category: 'facial',
+    name: { es: 'Kriado Deep Facial Cleansing', en: 'Kriado Deep Facial Cleansing', de: 'Kriado Deep Facial Cleansing' },
+    description: {
+      es: 'Limpieza facial profunda: puntos negros, exfoliación e hidratación de la piel.',
+      en: 'A deep facial cleanse: blackheads, exfoliation and hydration.',
+      de: 'Tiefenreinigung fürs Gesicht: Mitesser, Peeling und Feuchtigkeit.',
+    },
+    duration: 50,
+  },
+  {
+    id: 'eyebrow-design',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Eyebrow Design', en: 'Kriado Eyebrow Design', de: 'Kriado Eyebrow Design' },
+    description: { es: 'Diseño de cejas.', en: 'Eyebrow shaping.', de: 'Augenbrauen in Form.' },
+  },
+  {
+    id: 'lip-detail',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Lip Detail', en: 'Kriado Lip Detail', de: 'Kriado Lip Detail' },
+    description: { es: 'Contorno de labios.', en: 'Lip area.', de: 'Lippenbereich.' },
+  },
+  {
+    id: 'underarm',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Underarm', en: 'Kriado Underarm', de: 'Kriado Underarm' },
+    description: { es: 'Axilas.', en: 'Underarms.', de: 'Achseln.' },
+  },
+  {
+    id: 'half-arms',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Half Arms', en: 'Kriado Half Arms', de: 'Kriado Half Arms' },
+    description: { es: 'Medios brazos.', en: 'Half arms.', de: 'Halbe Arme.' },
+  },
+  {
+    id: 'full-arms',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Full Arms', en: 'Kriado Full Arms', de: 'Kriado Full Arms' },
+    description: { es: 'Brazos completos.', en: 'Full arms.', de: 'Ganze Arme.' },
+  },
+  {
+    id: 'half-legs',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Half Legs', en: 'Kriado Half Legs', de: 'Kriado Half Legs' },
+    description: { es: 'Medias piernas.', en: 'Half legs.', de: 'Halbe Beine.' },
+  },
+  {
+    id: 'full-legs',
+    group: 'estetica',
+    category: 'depilacion',
+    name: { es: 'Kriado Full Legs', en: 'Kriado Full Legs', de: 'Kriado Full Legs' },
+    description: { es: 'Piernas completas.', en: 'Full legs.', de: 'Ganze Beine.' },
+  },
+  {
+    id: 'express-manicure',
+    group: 'estetica',
+    category: 'manos',
+    name: { es: 'Kriado Express Manicure', en: 'Kriado Express Manicure', de: 'Kriado Express Manicure' },
+    description: { es: 'Limado y esmaltado.', en: 'Filing and polish.', de: 'Feilen und Lackieren.' },
+    duration: 30,
+  },
+  {
+    id: 'express-pedicure',
+    group: 'estetica',
+    category: 'manos',
+    name: { es: 'Kriado Express Pedicure', en: 'Kriado Express Pedicure', de: 'Kriado Express Pedicure' },
+    description: { es: 'Limado y esmaltado.', en: 'Filing and polish.', de: 'Feilen und Lackieren.' },
+    duration: 30,
+  },
+  {
+    id: 'luxury-manicure',
+    group: 'estetica',
+    category: 'manos',
+    name: { es: 'Kriado Luxury Manicure', en: 'Kriado Luxury Manicure', de: 'Kriado Luxury Manicure' },
+    description: {
+      es: 'Corte, limado, exfoliación, esmaltado y masaje.',
+      en: 'Trim, filing, exfoliation, polish and massage.',
+      de: 'Schneiden, Feilen, Peeling, Lackieren und Massage.',
+    },
+    duration: 50,
+  },
+  {
+    id: 'luxury-pedicure',
+    group: 'estetica',
+    category: 'manos',
+    name: { es: 'Kriado Luxury Pedicure', en: 'Kriado Luxury Pedicure', de: 'Kriado Luxury Pedicure' },
+    description: {
+      es: 'Corte, limado, exfoliación, esmaltado y masaje.',
+      en: 'Trim, filing, exfoliation, polish and massage.',
+      de: 'Schneiden, Feilen, Peeling, Lackieren und Massage.',
+    },
+    duration: 55,
+  },
+  {
+    id: 'deep-relax',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Deep Relax', en: 'Kriado Deep Relax', de: 'Kriado Deep Relax' },
+    description: { es: 'Masaje relajante.', en: 'Relaxing massage.', de: 'Entspannende Massage.' },
+    duration: [25, 50],
+  },
+  {
+    id: 'deep-tissue',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Deep Tissue', en: 'Kriado Deep Tissue', de: 'Kriado Deep Tissue' },
+    description: {
+      es: 'Masaje profundo, con presión firme, para soltar tensiones.',
+      en: 'Deep massage with firm pressure to release tension.',
+      de: 'Tiefenmassage mit kräftigem Druck gegen Verspannungen.',
+    },
+    duration: [25, 50],
+  },
+  {
+    id: 'lymphatic',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Lymphatic', en: 'Kriado Lymphatic', de: 'Kriado Lymphatic' },
+    description: { es: 'Drenaje linfático.', en: 'Lymphatic drainage.', de: 'Lymphdrainage.' },
+    duration: [25, 50],
+  },
+  {
+    id: 'sport',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Sport', en: 'Kriado Sport', de: 'Kriado Sport' },
+    description: {
+      es: 'Masaje deportivo, para músculos cargados.',
+      en: 'Sports massage for tired muscles.',
+      de: 'Sportmassage für beanspruchte Muskeln.',
+    },
+    duration: [25, 50],
+  },
+  {
+    id: 'reflexology',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Reflexology', en: 'Kriado Reflexology', de: 'Kriado Reflexology' },
+    description: { es: 'Reflexología podal.', en: 'Foot reflexology.', de: 'Fußreflexzonenmassage.' },
+    duration: 40,
+    pending: '[DA_CLIENTE: confermare che è reflexología podal]',
+  },
+  {
+    id: 'head-ritual',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Head Ritual', en: 'Kriado Head Ritual', de: 'Kriado Head Ritual' },
+    duration: 45,
+    pending: '[DA_CLIENTE: cosa include]',
+  },
+  {
+    id: 'hawaiian-lomi-lomi',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Hawaiian Lomi Lomi', en: 'Kriado Hawaiian Lomi Lomi', de: 'Kriado Hawaiian Lomi Lomi' },
+    description: {
+      es: 'Masaje hawaiano, con movimientos largos y envolventes.',
+      en: 'Hawaiian massage with long, flowing strokes.',
+      de: 'Hawaiianische Massage mit langen, fließenden Bewegungen.',
+    },
+    duration: 50,
+  },
+  {
+    id: 'body-soul-ritual',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Body & Soul Ritual', en: 'Kriado Body & Soul Ritual', de: 'Kriado Body & Soul Ritual' },
+    duration: 50,
+    pending: '[DA_CLIENTE: cosa include]',
+  },
+  {
+    id: 'full-moon-ritual',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Full Moon Ritual', en: 'Kriado Full Moon Ritual', de: 'Kriado Full Moon Ritual' },
+    duration: 50,
+    pending: '[DA_CLIENTE: cosa include]',
+  },
+  {
+    id: 'mallorca-essence-ritual',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Mallorca Essence Ritual', en: 'Kriado Mallorca Essence Ritual', de: 'Kriado Mallorca Essence Ritual' },
+    duration: 50,
+    pending: '[DA_CLIENTE: cosa include]',
+  },
+  {
+    id: 'indian-essence-ritual',
+    group: 'estetica',
+    category: 'masajes',
+    name: { es: 'Kriado Indian Essence Ritual', en: 'Kriado Indian Essence Ritual', de: 'Kriado Indian Essence Ritual' },
+    duration: 70,
+    pending: '[DA_CLIENTE: cosa include]',
   },
 ];
 

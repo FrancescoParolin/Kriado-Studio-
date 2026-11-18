@@ -38,7 +38,7 @@ export const aboutFallbackPhoto: Omit<Img, 'alt'> = {
 
 /**
  * "El equipo" in "Quiénes somos", in quest'ordine (Paro, 9 novembre 2026): Carlos, Arturo (barbero estilista),
- * Mayte (estética: i servizi di estetica non sono ancora nel listino), Pau.
+ * Mayte (estética: i suoi servizi sono nel listino, gruppo "estetica"), Pau.
  * Ritratti sul muro bianco del salone, in bianco e nero (luce uniforme tra quattro scatti diversi), 4:5, occhi alla stessa altezza.
  */
 export const team: TeamMember[] = [

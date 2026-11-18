@@ -9,6 +9,7 @@ import {
   SHOW_PRICES,
   brands,
   bundleSaving,
+  serviceCategories,
   serviceGroups,
   services,
   type Service,
@@ -23,10 +24,11 @@ import { ServiceTabs } from './ServiceTabs';
 const bookClass =
   'ui inline-flex min-h-12 items-center whitespace-nowrap underline decoration-1 underline-offset-4 hover:decoration-2';
 
-/** Foto di lavoro vere per ogni gruppo (10 ottobre 2026): rituale con asciugamano e colore su capelli lunghi. */
+/** Foto vere per ogni gruppo: rituale con asciugamano, colore su capelli lunghi (10 ottobre 2026), la porta del Beauty Salon. */
 const GROUP_PHOTO: Record<ServiceGroup, string> = {
   barberia: '/images/galeria/trabajo-02.jpg',
   peluqueria: '/images/galeria/trabajo-01.jpg',
+  estetica: '/images/galeria/beauty-01.jpg',
 };
 
 /** Kriado Private ha una scheda tutta sua sotto la carta della barbería. */
@@ -41,7 +43,7 @@ function usePrice(service: Service) {
   return format.number(service.price, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 }
 
-/** "Reservar" di riga: la barbería va dritta su Yeasy (nuova scheda: freccia ↗), la peluquería al modulo WhatsApp. */
+/** "Reservar" di riga: la barbería va dritta su Yeasy (nuova scheda: freccia ↗), peluquería ed estética al modulo WhatsApp. */
 function Book({ service, locale }: { service: Service; locale: Locale }) {
   const t = useTranslations();
   const name = service.name[locale];
@@ -68,7 +70,9 @@ function Row({ service, locale }: { service: Service; locale: Locale }) {
   const format = useFormatter();
   const price = usePrice(service);
   const saving = SHOW_PRICES ? bundleSaving(service) : null;
-  const duration = service.duration ? t('minutes', { minutes: service.duration }) : null;
+  // Due durate (massaggi da 25 o 50) in una sola pillola: "25 / 50 min".
+  const minutes = Array.isArray(service.duration) ? service.duration.join(' / ') : service.duration;
+  const duration = minutes ? t('minutes', { minutes }) : null;
 
   return (
     <li
@@ -84,17 +88,19 @@ function Row({ service, locale }: { service: Service; locale: Locale }) {
             <span className="ui rounded-full bg-negro px-2.5 py-1 leading-none text-blanco">{t('popularTag')}</span>
           ) : null}
         </div>
-        <p className="mt-1 text-gris">
-          {service.description[locale]}
-          {saving ? (
-            <span className="font-semibold text-negro">
-              {' '}
-              {t('saving', {
-                amount: format.number(saving, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }),
-              })}
-            </span>
-          ) : null}
-        </p>
+        {service.description || saving ? (
+          <p className="mt-1 text-gris">
+            {service.description?.[locale]}
+            {saving ? (
+              <span className="font-semibold text-negro">
+                {' '}
+                {t('saving', {
+                  amount: format.number(saving, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }),
+                })}
+              </span>
+            ) : null}
+          </p>
+        ) : null}
       </div>
       <div className="flex flex-col items-end gap-1">
         {duration ? (
@@ -142,6 +148,10 @@ function GroupPanel({ group, locale }: { group: ServiceGroup; locale: Locale }) 
   const rows = list.filter((s) => s.id !== PRIVATE_ID);
   const privateService = list.find((s) => s.id === PRIVATE_ID);
   const photo = gallery.find((g) => g.src === GROUP_PHOTO[group]);
+  // Gruppi con sezioni (estética: facial, depilación, manos, masajes): un sottotitolo e una lista per sezione.
+  const sections = serviceCategories
+    .map((category) => ({ category, items: rows.filter((s) => s.category === category) }))
+    .filter((section) => section.items.length > 0);
 
   return (
     <div className="grid-12 gap-y-8 lg:items-start">
@@ -164,11 +174,24 @@ function GroupPanel({ group, locale }: { group: ServiceGroup; locale: Locale }) 
         </figcaption>
       </figure>
       <div className="col-span-12 lg:col-span-7">
-        <ul className="divide-y divide-hueso border-y border-hueso">
-          {rows.map((s) => (
-            <Row key={s.id} service={s} locale={locale} />
-          ))}
-        </ul>
+        {sections.length ? (
+          sections.map(({ category, items }, i) => (
+            <div key={category} className={i ? 'mt-12 lg:mt-16' : ''}>
+              <h4 className="wordmark mb-4 text-[1.375rem] lg:text-[1.75rem]">{t(`categories.${category}`)}</h4>
+              <ul className="divide-y divide-hueso border-y border-hueso">
+                {items.map((s) => (
+                  <Row key={s.id} service={s} locale={locale} />
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <ul className="divide-y divide-hueso border-y border-hueso">
+            {rows.map((s) => (
+              <Row key={s.id} service={s} locale={locale} />
+            ))}
+          </ul>
+        )}
         {privateService ? <PrivateCard service={privateService} locale={locale} /> : null}
       </div>
     </div>

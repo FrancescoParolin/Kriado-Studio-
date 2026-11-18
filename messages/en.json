@@ -68,13 +68,21 @@
       "title": "Cuts, colour and beards",
       "groups": {
         "peluqueria": "Hairdressing",
-        "barberia": "Barbering"
+        "barberia": "Barbering",
+        "estetica": "Beauty"
       },
       "minutes": "{minutes} min",
       "variable": "Price varies",
       "groupIntro": {
         "barberia": "The Kriado menu. Book it on Yeasy, at an exact day and time.",
-        "peluqueria": "For women and men. Book on WhatsApp at our contact number. Before any service we diagnose your hair, to bring out its full beauty."
+        "peluqueria": "For women and men. Book on WhatsApp at our contact number. Before any service we diagnose your hair, to bring out its full beauty.",
+        "estetica": "With Mayte, our beautician: facials, hair removal, manicure and pedicure, massages and rituals. Book on WhatsApp at our contact number."
+      },
+      "categories": {
+        "facial": "Facials",
+        "depilacion": "Hair removal",
+        "manos": "Manicure and pedicure",
+        "masajes": "Massages and rituals"
       },
       "brands": "In the salon you will find {brands}.",
       "onRequest": "On request",
@@ -273,7 +281,7 @@
       },
       "mayte": {
         "role": "Beautician",
-        "text": "Looks after the beauty side of the salon. Calm, precise work, down to the last detail.",
+        "text": "Facials, hair removal, manicure and pedicure, massages and rituals. Calm, precise work, down to the last detail.",
         "alt": "Portrait of Mayte Almada, beautician at Kriado Studio"
       },
       "pau": {

@@ -39,7 +39,7 @@ export function BarberShopJsonLd({ location, url, locale }: { location: Location
     name: DATI.nombre,
     itemListElement: services.map((s) => ({
       '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: s.name[locale], description: s.description[locale] },
+      itemOffered: { '@type': 'Service', name: s.name[locale], description: s.description?.[locale] },
       ...(SHOW_PRICES && typeof s.price === 'number' ? { price: s.price, priceCurrency: 'EUR' } : {}),
     })),
   };
